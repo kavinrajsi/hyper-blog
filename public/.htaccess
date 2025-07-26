@@ -1,0 +1,13 @@
+Options +FollowSymLinks
+RewriteEngine On
+RewriteBase /
+
+# ✅ Allow loading of Next.js static files (_next/)
+RewriteRule ^_next/ - [L]
+
+# ✅ Allow direct access to existing files and folders
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# ✅ Support trailing slashes: /about/ → /about/index.html
+RewriteRule ^(.+)/$ /$1/index.html [L]
