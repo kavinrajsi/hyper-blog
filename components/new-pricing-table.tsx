@@ -35,10 +35,15 @@ const renderFeatureValue = (features: PlanFeatures, key: keyof PlanFeatures) => 
   const value = features[key];
   if (typeof value === 'boolean') {
     return value ? (
-      <FaCheck className="mx-auto text-green-500" />
+      <svg className="mx-auto" width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M20 6L9 17L4 12" stroke="#039855" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
     ) : (
-      <span className="text-gray-400">-</span>
+      <span className="text-[#667085] font-medium">-</span>
     );
+  }
+  if (key === 'members' || key === 'pageviewsMonth' || key === 'postsMonth') {
+    return <span className="text-[#101828] font-medium">{value}</span>;
   }
   return value;
 };
@@ -145,14 +150,12 @@ export default function NewPricingTable() {
     <div className="max-w-[1200px] mx-auto px-4">
       {/* Currency Selector */}
       <div className="flex justify-end mb-8">
-        <select 
-          value={currency}
-          onChange={(e) => setCurrency(e.target.value as 'INR' | 'USD')}
-          className="border border-gray-300 rounded-md px-3 py-2"
-        >
-          <option value="INR">INR</option>
-          <option value="USD">USD</option>
-        </select>
+        <button className="flex items-center gap-2 px-4 py-2 border border-gray-200 rounded-lg">
+          <span>₹ INR</span>
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M2 4L6 8L10 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+          </svg>
+        </button>
       </div>
 
       {/* Pricing Grid */}
@@ -160,43 +163,59 @@ export default function NewPricingTable() {
         {plans.map((plan, index) => (
           <div 
             key={plan.name}
-            className={`relative rounded-lg border ${
-              plan.isPopular ? 'border-orange-500' : 'border-gray-200'
+            className={`relative bg-white rounded-xl border ${
+              plan.isPopular ? 'border-[#FF7700]' : 'border-gray-200'
             } p-6`}
           >
             {plan.isPopular && (
               <div className="absolute -top-3 left-0 right-0 flex justify-center">
-                <span className="bg-orange-500 text-white px-4 py-1 rounded-full text-sm">
-                  Most Popular
+                <span className="bg-[#FF7700] text-white px-6 py-1.5 rounded-full text-sm font-medium">
+                  Most Popular ⭐️
                 </span>
               </div>
             )}
-            <h3 className="text-xl font-bold">{plan.name}</h3>
-            <p className="text-gray-600 text-sm">{plan.description}</p>
-            <div className="my-4">
-              <span className="text-3xl font-bold">{plan.price[currency]}</span>
-              <span className="text-gray-500">/month*</span>
+            <h3 className="text-2xl font-bold text-[#101828]">{plan.name}</h3>
+            <p className="text-[#475467] text-sm mt-1">{plan.description}</p>
+            <div className="mt-6 mb-4">
+              <span className="text-4xl font-bold text-[#101828]">{plan.price[currency]}</span>
+              <span className="text-[#475467] ml-1">/month*</span>
             </div>
-            <button className="w-full bg-gray-700 text-white rounded-md py-2 mb-6">
+            <button className={`w-full ${
+              plan.isPopular ? 'bg-[#FF7700]' : 'bg-[#344054]'
+            } text-white rounded-lg py-2.5 mb-6 font-medium`}>
               Coming Soon
             </button>
-            <p className="text-orange-500 mb-4">*Lorem Lorem Ipsum is simply dummy text of the</p>
-            <a href="#" className="text-gray-600 underline text-sm">Learn more</a>
+            <p className="text-[#FF7700] text-sm mb-2">*Lorem Lorem Ipsum is simply dummy text of the</p>
+            <a href="#" className="text-[#475467] text-sm hover:text-[#101828] underline">Learn more</a>
           </div>
         ))}
       </div>
 
       {/* Features Comparison Table */}
-      <div className="mt-12 overflow-x-auto">
+      <div className="mt-16 overflow-x-auto relative">
+        <div className="sticky top-0 bg-white z-10 pb-4">
+          <div className="grid grid-cols-4 gap-6">
+            <div></div>
+            {plans.map((plan) => (
+              <div key={plan.name} className="text-center">
+                <h4 className="text-lg font-semibold text-[#101828]">{plan.name}</h4>
+                <p className="text-[#475467] text-sm">{plan.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
         <table className="w-full">
-          <tbody>
-            {Object.entries(featureLabels).map(([key, label]) => (
-              <tr key={key} className="border-b">
-                <td className="py-4 font-medium">{label}</td>
+          <tbody className="divide-y divide-dashed divide-gray-200">
+            {Object.entries(featureLabels).map(([key, label], idx) => (
+              <tr key={key} className={`${idx % 2 === 0 ? 'bg-[#F9FAFB]' : 'bg-white'}`}>
+                <td className="py-4 px-4 font-medium text-[#101828] text-sm border-b border-dashed border-gray-200">
+                  {label}
+                </td>
                 {plans.map((plan) => (
-                  <td key={plan.name} className="py-4 text-center">
-                    {key === 'aiCredits' ? plan.aiCredits :
-                     renderFeatureValue(plan.features, key as keyof PlanFeatures)}
+                  <td key={plan.name} className="py-4 px-4 text-center border-b border-dashed border-gray-200">
+                    {key === 'aiCredits' ? (
+                      <span className="text-[#101828] font-medium">{plan.aiCredits}</span>
+                    ) : renderFeatureValue(plan.features, key as keyof PlanFeatures)}
                   </td>
                 ))}
               </tr>

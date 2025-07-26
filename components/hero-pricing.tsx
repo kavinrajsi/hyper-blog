@@ -5,6 +5,7 @@ import AvatarImg02 from "@/public/images/avatar-02.jpg";
 import AvatarImg03 from "@/public/images/avatar-03.jpg";
 import AvatarImg04 from "@/public/images/avatar-04.jpg";
 import PricingTable from "@/components/pricing-table";
+import NewPricingTable from "./new-pricing-table";
 
 export default function HeroPricing() {
   return (
@@ -31,6 +32,7 @@ export default function HeroPricing() {
               </div>
               {/* Pricing table */}
               <PricingTable />
+              <NewPricingTable />
             </div>
           </div>
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
