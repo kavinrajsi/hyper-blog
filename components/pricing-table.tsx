@@ -277,7 +277,7 @@ export default function PricingTable() {
             </a>
           </div>
            <p className="mb-4 text-[1rem] text-[#0F0805] font-[600]">
-            All FREE features, plus:
+            All <span className="text-[#ff7701]">FREE</span> features, plus:
           </p>
           <ul className="grow space-y-2 text-sm text-[#0F0805]">
             <li className="flex items-center">
@@ -409,7 +409,7 @@ export default function PricingTable() {
             </a>
           </div>
           <p className="mb-4 text-[1rem] pr-5 pl-5 pb-5 text-[#0F0805] font-[600]">
-            All LAUNCH features, plus:
+            All <span className="text-[#ff7701]">LAUNCH</span> features, plus:
           </p>
           <ul className="grow space-y-2 text-sm pr-5 pl-5 pb-5 text-[#0F0805]">
             <li className="flex items-center">
@@ -541,7 +541,7 @@ export default function PricingTable() {
             </a>
           </div>
           <p className="mb-4 text-[1rem] text-[#0F0805] font-[600]">
-            All GROW features, plus:
+            All <span className="text-[#ff7701]">GROW </span> features, plus:
           </p>
           <ul className="grow space-y-2 text-sm text-[#0F0805]">
             <li className="flex items-center">

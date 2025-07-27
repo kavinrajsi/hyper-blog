@@ -2,120 +2,124 @@
 
 import { useState, Fragment } from "react";
 import Image from "next/image";
-import { TabGroup, Tab, TabList, TabPanel, TabPanels } from "@headlessui/react";
+import { Tab } from "@headlessui/react";
 import { Transition } from "@headlessui/react";
-// import CarouselImg01 from "@/public/images/carousel-01.png";
-// import CarouselImg02 from "@/public/images/carousel-02.png";
-// import CarouselImg03 from "@/public/images/carousel-03.png";
-// import SmallTestimonialImg from "@/public/images/small-testimonial.jpg";
 
-const tabs = [
+const steps = [
   {
+    number: "1",
     title: "Sign Up",
-    description:
-      "Use your work email or Gmail to get started. No credit card, no friction.",
-    img: "/images/carousel-01.png",
-    imgAlt: "Carousel image 01",
+    description: "Use your work email or Gmail to get started. No credit card, no friction.",
+    img: "/images/workflow-01.png",
+    imgAlt: "Sign Up Image",
   },
   {
+    number: "2",
     title: "Name & Write Your Blog",
-    description:
-      "Give your blog a name (you can change it later), start writing, and let HyperBlog handle everything else—just hit publish.",
-    img: "/images/carousel-02.png",
-    imgAlt: "Carousel image 02",
+    description: "Give your blog a name (you can change it later), start writing, and let HyperBlog handle everything else—just hit publish.",
+    img: "/images/workflow-02.png",
+    imgAlt: "Migrate Blog Image",
   },
   {
+    number: "3",
     title: "Connect Your Domain",
-    description:
-      "Easily link HyperBlog to your existing website and migrate old content in minutes. Your blog, your domain, your brand.",
-    img: "/images/carousel-03.png",
-    imgAlt: "Carousel image 03",
+    description: "Easily link HyperBlog to your existing website and migrate old content in minutes. Your blog, your domain, your brand.",
+    img: "/images/workflow-03.png",
+    imgAlt: "Domain Setup Image",
   },
 ];
 
 export default function SplitCarousel() {
-  const [selectedTab, setSelectedTab] = useState<number>(0);
+  const [activeStep, setActiveStep] = useState(0);
 
   return (
-    <section>
-      <TabGroup selectedIndex={selectedTab} onChange={setSelectedTab} vertical>
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <div className="border-t py-12 [border-image:linear-gradient(to_right,transparent,theme(colors.slate.400/.25),transparent)1] md:py-20">
-            <div className="flex flex-col items-center justify-between pb-12 md:flex-row md:gap-8 md:pb-20 lg:gap-16">
-              {/* Left content */}
-              <div className="shrink-0 md:w-[500px] [&_>*]:pl-7">
-                <div className="relative mb-6 border-l [border-image:linear-gradient(to_bottom,transparent,theme(colors.slate.700/.25),transparent)1] after:absolute after:left-0 after:top-0 after:h-4 after:w-px after:origin-bottom after:-translate-y-full after:animate-shine after:opacity-0">
-                  <div className="mb-4">
-                    <h2 className="bg-[linear-gradient(to_right,theme(colors.black),theme(colors.black),theme(colors.black),theme(colors.black),theme(colors.black))] bg-[length:200%_auto] bg-clip-text pb-4 font-nacelle text-3xl font-semibold text-transparent md:text-3xl">
-                      Launch your Blog in 5 Mins
-                    </h2>
-                    <p className="text-[#475467]">
-                      From sign-up to publish—your blog goes live in minutes, not days.
-                    </p>
-                  </div>
-                  {/* <h5 className="bg-[linear-gradient(to_right,theme(colors.black),theme(colors.black),theme(colors.black),theme(colors.black),theme(colors.black))] bg-[length:200%_auto] bg-clip-text pb-4 font-nacelle text-3xl font-semibold text-transparent md:text-xl">
-                    Sign Up
-                    </h5> */}
-
-                  {/* Buttons */}
-                  <TabList className="space-y-2">
-                    {tabs.map((tab, index) => (
-                      <Tab key={index} as={Fragment}>
-                        <button
-                          className={`-mx-2 flex gap-2 p-2 text-left  focus-visible:outline-none ui-focus-visible:outline-none`}
-                        >
-                          <svg
-                            className={`shrink-0 ${selectedTab !== index ? "fill-[#FE8800]" : "fill-[#EC451E]"}`}
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="16"
-                          >
-                            <path d="m14.092 5.207-8.207 8.207-3.592-3.591 1.414-1.415 2.178 2.178 6.793-6.793 1.414 1.414Z" />
-                          </svg>
-                          <span>
-                            <span className="font-medium text-[#0F0805]">
-                              {tab.title}
-                            </span>
-                            <span className="text-[#475467]"> - </span>
-                            <span className="text-[#475467]">
-                              {tab.description}
-                            </span>
-                          </span>
-                        </button>
-                      </Tab>
-                    ))}
-                  </TabList>
-                </div>
-              </div>
-
-              {/* Right content */}
-              <TabPanels className="shrink-0 md:w-[540px]" data-aos="fade-up">
-                <div className="relative flex flex-col">
-                  {tabs.map((tab, index) => (
-                    <Transition
-                      key={index}
-                      as="div"
-                      show={selectedTab === index}
-                      className={`transform transition ease-[cubic-bezier(0.68,-0.3,0.32,1)] data-[closed]:absolute data-[enter]:data-[closed]:-translate-y-6 data-[leave]:data-[closed]:translate-y-12 data-[closed]:opacity-0 data-[enter]:duration-500 data-[leave]:duration-300`}
-                      unmount={false}
-                      appear={true}
-                    >
-                      <TabPanel as={Fragment} static={true}>
-                        <Image
-                          width={540}
-                          height={520}
-                          src={tab.img}
-                          alt={tab.imgAlt}
-                        />
-                      </TabPanel>
-                    </Transition>
-                  ))}
-                </div>
-              </TabPanels>
-            </div>
-          </div>
+    <section className="py-16 px-4">
+      <div className="max-w-6xl mx-auto">
+        {/* Header */}
+        <div className="mb-12">
+          <h2 className="text-3xl font-bold text-[#101828] mb-4">Launch your Blog in 5 Mins</h2>
+          <p className="text-[#0F0805] text-[16px] max-w-3xl">
+            From sign-up to publish—your blog goes live in minutes, not days.
+          </p>
         </div>
-      </TabGroup>
+
+        {/* Split Section */}
+        <Tab.Group selectedIndex={activeStep} onChange={setActiveStep}>
+          <div className="flex flex-col md:flex-row gap-10 items-start">
+            {/* Left: Steps List */}
+            <div className="relative max-w-xl w-full">
+              {activeStep <= 2 && (
+                <div className="absolute left-6 top-[24px] h-[250px] w-[3px] bg-[#FFE9E0]">
+                  <div
+                    className="w-full bg-[#ff7701] transition-all duration-300 ease-in-out rounded-full"
+                    style={{ 
+                      height: activeStep === 0 ? '0%' : 
+                              activeStep === 1 ? '50%' : 
+                              '100%'
+                    }}
+                  />
+                </div>
+              )}
+
+              <Tab.List className="relative space-y-8">
+                {steps.map((step, index) => (
+                  <Tab key={index} as={Fragment}>
+                    <button
+                      className="w-full text-left flex gap-6 group focus:outline-none"
+                    >
+                      {/* Number */}
+                      <div
+                        className={`w-12 h-12 rounded-full flex items-center justify-center text-lg font-medium shrink-0
+                          ${index <= activeStep ? 'bg-[#FFE9E0] text-[#000000]' : 'bg-[#FFE9E0] text-[#000000]'}
+                          transition-colors duration-300`}
+                      >
+                        {step.number}
+                      </div>
+
+                      {/* Title + Description */}
+                      <div className="pt-3">
+                        <h3
+                          className={`text-xl font-semibold mb-2 transition-colors duration-300
+                            ${index <= activeStep ? 'text-[#101828]' : 'text-[#475467]'}`}
+                        >
+                          {step.title}
+                        </h3>
+                        <p className="text-[#0F0805] text-[15px]">{step.description}</p>
+                      </div>
+                    </button>
+                  </Tab>
+                ))}
+              </Tab.List>
+            </div>
+
+            {/* Right: Image Panel */}
+            <Tab.Panels className="md:w-[540px] w-full" data-aos="fade-in">
+              {steps.map((tab, index) => (
+                <Transition
+                  key={index}
+                  show={activeStep === index}
+                  enter="transition-opacity duration-500"
+                  enterFrom="opacity-0"
+                  enterTo="opacity-100"
+                  leave="transition-opacity duration-300"
+                  leaveFrom="opacity-100"
+                  leaveTo="opacity-0"
+                >
+                  <Tab.Panel static={true}>
+                    <Image
+                      width={540}
+                      height={520}
+                      src={tab.img}
+                      alt={tab.imgAlt}
+                      className="rounded-xl"
+                    />
+                  </Tab.Panel>
+                </Transition>
+              ))}
+            </Tab.Panels>
+          </div>
+        </Tab.Group>
+      </div>
     </section>
   );
 }

@@ -19,12 +19,12 @@ const cardData = [
   {
     title: "Blog to Banner",
     desc: "No banner image for your blog post? No worries! Hyperblog automatically creates a professional banner for your blog to make it look attractive and ready to share.",
-    image: "/images/Screen2.png",
+    image: "/images/blog to banner.gif",
   },
   {
     title: "Blog to Infography",
     desc: "Easily convert blogs to informative infographics to increase visual engagement and simplify complex content.",
-    image: "/images/Screen3.png",
+    image: "/images/blog to infographic.gif",
   }
 ];
 

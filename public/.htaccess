@@ -1,13 +1,58 @@
-Options +FollowSymLinks
+Options +FollowSymLinks -MultiViews
 RewriteEngine On
 RewriteBase /
 
-# ✅ Allow loading of Next.js static files (_next/)
-RewriteRule ^_next/ - [L]
+# Force HTTPS
+RewriteCond %{HTTPS} !=on [OR]
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteCond %{HTTP_HOST} ^(?:www\.)?(.+)$ [NC]
+RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301,NE]
 
-# ✅ Allow direct access to existing files and folders
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
+# Set proper MIME types
+AddType text/css .css
+AddType text/javascript .js
+AddType application/javascript .mjs
+AddType image/svg+xml .svg
+AddType application/font-woff .woff
+AddType application/font-woff2 .woff2
 
-# ✅ Support trailing slashes: /about/ → /about/index.html
-RewriteRule ^(.+)/$ /$1/index.html [L]
+# Enable CORS for fonts and assets
+<FilesMatch "\.(ttf|ttc|otf|eot|woff|woff2|font.css|css|js)$">
+    Header set Access-Control-Allow-Origin "*"
+</FilesMatch>
+
+# Handle Next.js static files and assets
+RewriteRule ^_next(/.*) /_next/$1 [L]
+
+# If the file exists, serve it directly
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
+
+# If the directory exists, serve it directly
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Handle Next.js pages
+RewriteRule ^([^.]+)$ $1.html [L]
+
+# Security Headers
+Header set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+Header set X-Content-Type-Options "nosniff"
+Header set X-Frame-Options "SAMEORIGIN"
+Header set X-XSS-Protection "1; mode=block"
+Header set Referrer-Policy "strict-origin-when-cross-origin"
+Header set Content-Security-Policy "upgrade-insecure-requests;"
+
+# Prevent directory listing
+Options -Indexes
+
+# Security Headers
+Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+Header always set X-Content-Type-Options "nosniff"
+Header always set X-Frame-Options "SAMEORIGIN"
+Header always set X-XSS-Protection "1; mode=block"
+Header always set Referrer-Policy "strict-origin-when-cross-origin"
+Header always set Content-Security-Policy "upgrade-insecure-requests;"
+
+# Remove server signature
+ServerSignature Off

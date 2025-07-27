@@ -24,7 +24,7 @@ export default function PricingHome() {
           {/* Pricing table */}
           <PricingTable />
 
-<NewPricingTable />
+{/* <NewPricingTable /> */}
         </div>
       </div>
     </section>

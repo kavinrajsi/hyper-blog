@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
-import { FaPlus, FaMinus } from "react-icons/fa";
+import { useState } from "react";
 
 type FAQ = {
   question: string;
@@ -11,32 +10,27 @@ type FAQ = {
 const faqs: FAQ[] = [
   {
     question: "How does HyperBlog help with SEO?",
-    answer:
-      "HyperBlog helps improve SEO by offering fast load times, optimized metadata, and schema markup support.",
+    answer: "HyperBlog helps improve SEO by offering fast load times, optimized metadata, and schema markup support.",
   },
   {
-    question: "Is HyperBlog mobile-friendly and fast?",
-    answer:
-      "Yes, HyperBlog is fully responsive and optimized for fast performance across all devices.",
+    question: "How does HyperBlog help with SEO?",
+    answer: "HyperBlog helps improve SEO by offering fast load times, optimized metadata, and schema markup support.",
   },
   {
-    question: "Can I personalize content and lead capture forms?",
-    answer:
-      "Absolutely. HyperBlog allows for easy personalization and integration of lead capture forms.",
+    question: "How does HyperBlog help with SEO?",
+    answer: "HyperBlog helps improve SEO by offering fast load times, optimized metadata, and schema markup support.",
   },
   {
-    question: "Do I need design skills to use AI images and banners?",
-    answer:
-      "No design skills needed! HyperBlog provides AI tools to generate beautiful visuals effortlessly.",
+    question: "How does HyperBlog help with SEO?",
+    answer: "HyperBlog helps improve SEO by offering fast load times, optimized metadata, and schema markup support.",
   },
   {
-    question: "Does HyperBlog support multilingual blogs?",
-    answer: "Yes, it includes multilingual support for global audience reach.",
+    question: "How does HyperBlog help with SEO?",
+    answer: "HyperBlog helps improve SEO by offering fast load times, optimized metadata, and schema markup support.",
   },
   {
-    question: "Can I migrate my existing blog content?",
-    answer:
-      "You can easily import your existing blog content into HyperBlog using the migration tool.",
+    question: "How does HyperBlog help with SEO?",
+    answer: "HyperBlog helps improve SEO by offering fast load times, optimized metadata, and schema markup support.",
   },
 ];
 
@@ -49,24 +43,29 @@ export default function FAQSection() {
 
   return (
     <div className="w-full max-w-7xl mx-auto mt-10 mb-12 px-4 py-16">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-        {/* Left Column */}
-        <div>
-          <h2 className="text-3xl font-bold text-orange-500 mb-4 inline-block border border-dotted border-blue-400 px-3 py-1">
-            FAQs
+      <div className="grid grid-cols-1 md:grid-cols-[300px,1fr] gap-12 items-start">
+        {/* Left Column - Question Mark Card */}
+        <div className="bg-[#FFF8F6] rounded-2xl p-8 text-center">
+          <div className="mb-6">
+            <img 
+              src="/images/FAQ.png" 
+              alt="FAQ Icon" 
+              className="w-24 h-24 mx-auto"
+            />
+          </div>
+          <h2 className="text-2xl font-bold text-[#101828] mb-4">
+            You have Different Questions?
           </h2>
-          <p className="text-gray-600 max-w-md">
-            Everything you need to know about the product and billing. Can’t
-            find the answer you’re looking for? Please{" "}
-            <a className="underline text-gray-700" href="#">
-              chat to our friendly team
-            </a>
-            .
+          <p className="text-[#475467] mb-6">
+            We will answer all your questions. We ensure your response.
           </p>
+          <button className="bg-[#ff7701] text-white px-8 py-3 rounded-lg font-medium hover:bg-opacity-90 transition-colors">
+            Talk to us
+          </button>
         </div>
 
-        {/* Right Column */}
-        <div className="divide-y divide-gray-300">
+        {/* Right Column - FAQs */}
+        <div className="space-y-4 bg-white rounded-xl p-6">
           {faqs.map((faq, index) => (
             <FAQItem
               key={index}
@@ -90,30 +89,46 @@ function FAQItem({
   isOpen: boolean;
   onClick: () => void;
 }) {
-  const contentRef = useRef<HTMLDivElement>(null);
-  const [height, setHeight] = useState("0px");
-
-  useEffect(() => {
-    if (contentRef.current) {
-      setHeight(isOpen ? `${contentRef.current.scrollHeight}px` : "0px");
-    }
-  }, [isOpen]);
-
   return (
-    <div className="py-4">
+    <div className="border-b border-[#EAECF0] last:border-b-0">
       <button
+        className="w-full py-2 flex justify-between items-center text-left focus:outline-none group"
         onClick={onClick}
-        className="w-full text-left flex justify-between items-center text-black font-medium focus:outline-none"
       >
-        <span>{faq.question}</span>
-        <span className="text-gray-400">{isOpen ? <FaMinus /> : <FaPlus />}</span>
+        <span className="text-[#101828] text-[16px] font-medium pr-4">{faq.question}</span>
+        <span className="ml-4 flex-shrink-0">
+          <div
+            className={`w-6 h-6 rounded-full flex items-center justify-center transition-colors ${
+              isOpen
+                ? "bg-[#D87D4A]"
+                : "bg-[#F9FAFB] border border-[#EAECF0] group-hover:border-[#D87D4A]"
+            }`}
+          >
+            <svg
+              width="12"
+              height="12"
+              viewBox="0 0 12 12"
+              fill="none"
+              className={`transform transition-transform duration-200 ${
+                isOpen ? "rotate-45" : ""
+              }`}
+            >
+              <path
+                d="M6 1v10M1 6h10"
+                stroke={isOpen ? "#FFFFFF" : "#667085"}
+                strokeWidth="2"
+                strokeLinecap="round"
+              />
+            </svg>
+          </div>
+        </span>
       </button>
       <div
-        ref={contentRef}
-        style={{ maxHeight: height }}
-        className="overflow-hidden transition-all duration-300 ease-in-out"
+        className={`overflow-hidden transition-all duration-200 ease-in-out ${
+          isOpen ? "max-h-48" : "max-h-0"
+        }`}
       >
-        <p className="text-gray-600 mt-2 text-sm">{faq.answer}</p>
+        <div className="pb-4 text-[#475467]">{faq.answer}</div>
       </div>
     </div>
   );

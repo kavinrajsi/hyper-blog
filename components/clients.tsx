@@ -29,7 +29,7 @@ export default function Clients() {
               ].map((logo, index) => (
                 <div
                   key={index}
-                  className="flex h-24 w-44 items-center justify-center rounded-2xl p-2 bg-white shadow"
+                  className="flex h-24 w-44 items-center justify-center p-2"
                 >
                   <img
                     src={`/images/${logo}`}
