@@ -19,15 +19,21 @@ export default function PricingTable() {
    const prices = {
     USD: {
       free: { monthly: 0, yearly: 0 },
-      launch: { monthly: 22, yearly: 25 },
-      grow: { monthly: 59, yearly: 65 },
-      scale: { monthly: 99, yearly: 115 },
+      launch: { monthly: 38, yearly: 44 },
+      grow: { monthly: 94, yearly: 107 },
+      scale: { monthly: 160, yearly: 141 },
     },
     INR: {
       free: { monthly: 0, yearly: 0 },
-      launch: { monthly: 1800, yearly: 2100 },
-      grow: { monthly: 4900, yearly: 5400 },
-      scale: { monthly: 8300, yearly: 9700 },
+      launch: { monthly: 2043, yearly: 5676 },
+      grow: { monthly: 4994, yearly: 5400 },
+      scale: { monthly: 7492, yearly: 8514 },
+    },
+    SAVE: {
+      free: { dollar: 0, rupee: 0 },
+      launch: { dollar: 63, rupee: 3343 },
+      grow: { dollar: 154, rupee: 8173 },
+      scale: { dollar: 231, rupee: 12260 },
     },
   };
 
@@ -36,6 +42,12 @@ export default function PricingTable() {
     const price = Monthly ? planPrices.monthly : planPrices.yearly;
     const symbol = selected === "USD" ? "$" : "₹";
     return `${symbol}${price.toLocaleString()}`;
+  };
+
+  const getSavings = (plan: "free" | "launch" | "grow" | "scale") => {
+    const savings = prices.SAVE[plan][selected === "USD" ? "dollar" : "rupee"];
+    const symbol = selected === "USD" ? "$" : "₹";
+    return savings > 0 ? `Save ${symbol}${savings.toLocaleString()} /Year` : "";
   };
 
   const currencies = [
@@ -257,7 +269,7 @@ export default function PricingTable() {
                 {Monthly ? "billed yearly" : "Per user/month."}
               </div>
               <div className="text-[15px] text-[#FF7700] font-inter font-[400]">
-                {Monthly ? "(Save $36 /Year)" : ""}
+                {Monthly && `(${getSavings('launch')})`}
               </div>
            </div>
 
@@ -392,7 +404,7 @@ export default function PricingTable() {
                 {Monthly ? "billed yearly" : "Per user/month."}
               </div>
               <div className="text-[15px] text-[#FF7700] font-inter font-[400]">
-                {Monthly ? "(Save $36 /Year)" : ""}
+                {Monthly && `(${getSavings('grow')})`}
               </div>
            </div>
              <a
@@ -522,7 +534,7 @@ export default function PricingTable() {
                 {Monthly ? "billed yearly" : "Per user/month."}
               </div>
               <div className="text-[15px] text-[#FF7700] font-inter font-[400]">
-                {Monthly ? "(Save $36 /Year)" : ""}
+                {Monthly && `(${getSavings('scale')})`}
               </div>
            </div>
             <a
