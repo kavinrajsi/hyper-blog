@@ -7,241 +7,172 @@ import { FaYoutube } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer>
-      <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
-        {/* Footer illustration */}
-        <div className="grid grid-cols-2 justify-between gap-12 py-8 sm:grid-rows-[auto_auto] md:grid-cols-4 md:grid-rows-[auto_auto] md:py-12 lg:grid-cols-[repeat(4,minmax(0,140px))_1fr] lg:grid-rows-1 xl:gap-20">
-          {/* 1st block */}
-          <div className="space-y-2">
-            <h3 className="text-sm font-medium text-black">Product</h3>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <a
-                  className="text-[#0F0805] transition hover:text-[#777777]"
-                  href=""
-                >
-                  Features
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-[#0F0805] transition hover:text-[#777777]"
-                  href=""
-                >
-                  Integrations
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-[#0F0805] transition hover:text-[#777777]"
-                  href=""
-                >
-                  Pricing &amp; Plans
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-[#0F0805] transition hover:text-[#777777]"
-                  href=""
-                >
-                  Changelog
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-[#0F0805] transition hover:text-[#777777]"
-                  href=""
-                >
-                  Our method
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-[#0F0805] transition hover:text-[#777777]"
-                  href=""
-                >
-                  User policy
-                </a>
-              </li>
-            </ul>
+    <footer className="bg-white py-12 border-t border-gray-200">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="grid grid-cols-1 gap-y-8 lg:grid-cols-12 lg:gap-8">
+          {/* Logo and description */}
+          <div className="lg:col-span-4">
+            <Logo />
+            <p className="mt-4 text-sm text-[#475467] max-w-[360px]">
+              We are dedicated to delivering innovative solutions that empower businesses to thrive in an ever-changing world.
+            </p>
+             <div className="flex gap-4 mt-12 md:mt-12">
+            <Link href="https://www.linkedin.com" target="_blank" className="text-[#98A2B3] hover:text-[#2D2D2D] transition-colors">
+              <FaLinkedinIn className="w-5 h-5" />
+            </Link>
+            <Link href="https://www.facebook.com" target="_blank" className="text-[#98A2B3] hover:text-[#2D2D2D] transition-colors">
+              <FaFacebookF className="w-5 h-5" />
+            </Link>
+            <Link href="https://www.youtube.com" target="_blank" className="text-[#98A2B3] hover:text-[#2D2D2D] transition-colors">
+              <FaYoutube className="w-5 h-5" />
+            </Link>
+            <Link href="https://twitter.com" target="_blank" className="text-[#98A2B3] hover:text-[#2D2D2D] transition-colors">
+              <FaXTwitter className="w-5 h-5" />
+            </Link>
           </div>
-          {/* 2nd block */}
-          <div className="space-y-2">
-            <h3 className="text-sm font-medium text-black">Company</h3>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <a
-                  className="text-[#0F0805] transition hover:text-[#777777]"
-                  href=""
-                >
-                  About us
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-[#0F0805] transition hover:text-[#777777]"
-                  href=""
-                >
-                  Diversity &amp; Inclusion
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-[#0F0805] transition hover:text-[#777777]"
-                  href=""
-                >
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-[#0F0805] transition hover:text-[#777777]"
-                  href=""
-                >
-                  Careers
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-[#0F0805] transition hover:text-[#777777]"
-                  href=""
-                >
-                  Financial statements
-                </a>
-              </li>
-            </ul>
           </div>
-          {/* 3rd block */}
-          <div className="space-y-2">
-            <h3 className="text-sm font-medium text-black">Resources</h3>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <Link
-                  className="text-[#0F0805] transition hover:text-[#777777]"
-                  href="/refund-policy"
-                >
-                  Refund Policy
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="text-[#0F0805] transition hover:text-[#777777]"
-                  href="/terms"
-                >
-                  Terms & Conditions
-                </Link> 
-              </li>
-              <li>
-                <Link
-                  className="text-[#0F0805] transition hover:text-[#777777]"
-                  href="/privacy-policy"
-                >
-                  Privacy Policy
-                </Link>
-              </li>
-            </ul>
-          </div>
-          {/* 4th block */}
-          <div className="space-y-2">
-            <h3 className="text-sm font-medium text-black">
-              Content Library
-            </h3>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <a
-                  className="text-[#0F0805] transition hover:text-[#777777]"
-                  href=""
-                >
-                  Templates
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-[#0F0805] transition hover:text-[#777777]"
-                  href=""
-                >
-                  Tutorials
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-[#0F0805] transition hover:text-[#777777]"
-                  href=""
-                >
-                  Knowledge base
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-[#0F0805] transition hover:text-[#777777]"
-                  href=""
-                >
-                  Learn
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-[#0F0805] transition hover:text-[#777777]"
-                  href=""
-                >
-                  Cookie manager
-                </a>
-              </li>
-            </ul>
-          </div>
-          {/* 5th block */}
-          <div className="col-span-2 md:col-span-4 lg:col-span-1 lg:text-right">
-            <div className="mb-3">
-              <Logo />
+          
+          {/* Navigation */}
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-4 lg:col-span-8">
+            {/* Product column */}
+            <div className="space-y-3">
+              <h3 className="text-sm font-medium text-black">FEATURES</h3>
+              <ul className="space-y-3 text-sm">
+                <li>
+                  <Link href="" className="text-[#475467] hover:text-[#2D2D2D] transition-colors">
+                    Auto Technical SEO
+                  </Link>
+                </li>
+                <li>
+                  <Link href="" className="text-[#475467] hover:text-[#2D2D2D] transition-colors">
+                    Blog to Banner
+                  </Link>
+                </li>
+                <li>
+                  <Link href="" className="text-[#475467] hover:text-[#2D2D2D] transition-colors">
+                    Blog to Infographics
+                  </Link>
+                </li>
+                <li>
+                  <Link href="" className="text-[#475467] hover:text-[#2D2D2D] transition-colors">
+                    Personalised Lead Magnet
+                  </Link>
+                </li>
+                <li>
+                  <Link href="" className="text-[#475467] hover:text-[#2D2D2D] transition-colors">
+                    Customise Design
+                  </Link>
+                </li>
+                <li>
+                  <Link href="" className="text-[#475467] hover:text-[#2D2D2D] transition-colors">
+                    Analytics
+                  </Link>
+                </li>
+              </ul>
             </div>
-            <div className="text-sm">
-              <ul className="inline-flex items-center gap-2">
+
+            {/* Company column */}
+            <div className="space-y-3">
+              <h3 className="text-sm font-medium text-black">SOLUTIONS</h3>
+              <ul className="space-y-3 text-sm">
                 <li>
-                  <a
-                    className="flex items-center justify-center text-[#777777] transition hover:text-[#ea7c00]"
-                    href="https://www.linkedin.com/company/hyperblog/"
-                    aria-label="Twitter"
-                    target="_blank"
-                  >
-                    <FaLinkedinIn className="text-[#000] transition duration-500 text-xl hover:text-[#ea7c00]" />
-                  </a>
+                  <Link href="/about" className="text-[#475467] hover:text-[#2D2D2D] transition-colors">
+                    ⁠AI Blogging CMS for B2B
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    className="flex items-center justify-center text-[#777777] transition hover:text-[#ea7c00]"
-                    href="https://www.facebook.com/hyperblog.io/"
-                    aria-label="Medium"
-                    target="_blank"
-                  >
-                    <FaFacebookF className="text-[#000] transition duration-500 text-lg hover:text-[#ea7c00]"/>
-                  </a>
+                  <Link href="" className="text-[#475467] hover:text-[#2D2D2D] transition-colors">
+                    AI Blogging CMS for SaaS
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    className="flex items-center justify-center text-[#777777] transition hover:text-[#ea7c00]"
-                    href="https://x.com/HyperBlog_io"
-                    aria-label="Github"
-                    target="_blank"
-                  >
-                    <FaXTwitter className="text-[#000] transition duration-500 text-lg hover:text-[#ea7c00]"/>
-                  </a>
+                  <Link href="/blog" className="text-[#475467] hover:text-[#2D2D2D] transition-colors">
+                    AI Blogging CMS for B2C
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    className="flex items-center justify-center text-[#777777] transition hover:text-[#ea7c00]"
-                    href="https://youtube.com/@hyperblog_io"
-                    aria-label="Github"
-                    target="_blank"
-                  >
-                    <FaYoutube className="text-[#000] text-2xl transition duration-500 hover:text-[#ea7c00]"/>
-                  </a>
+                  <Link href="" className="text-[#475467] hover:text-[#2D2D2D] transition-colors">
+                    AI Blogging CMS for B2B Agency
+                  </Link>
+                </li>
+                <li>
+                  <Link href="" className="text-[#475467] hover:text-[#2D2D2D] transition-colors">
+                    AI Blogging CMS for Content Agency
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            {/* Content Library column */}
+            <div className="space-y-3">
+              <h3 className="text-sm font-medium text-black">COMPARE</h3>
+              <ul className="space-y-3 text-sm">
+                <li>
+                  <Link href="" className="text-[#475467] hover:text-[#2D2D2D] transition-colors">
+                    Wordpress vs Hyperblog
+                  </Link>
+                </li>
+                <li>
+                  <Link href="" className="text-[#475467] hover:text-[#2D2D2D] transition-colors">
+                    Medium vs Hyperblog
+                  </Link>
+                </li>
+                <li>
+                  <Link href="" className="text-[#475467] hover:text-[#2D2D2D] transition-colors">
+                    Ghost vs Hyperblog
+                  </Link>
+                </li>
+              </ul>
+            </div>
+             {/* Resources column */}
+            <div className="space-y-3">
+              <h3 className="text-sm font-medium text-black">COMPANY</h3>
+              <ul className="space-y-3 text-sm">
+                <li>
+                  <Link href="/refund-policy" className="text-[#475467] hover:text-[#2D2D2D] transition-colors">
+                    Blogs
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/refund-policy" className="text-[#475467] hover:text-[#2D2D2D] transition-colors">
+                    Updates
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/refund-policy" className="text-[#475467] hover:text-[#2D2D2D] transition-colors">
+                    Pricing
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/refund-policy" className="text-[#475467] hover:text-[#2D2D2D] transition-colors">
+                    About Us
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/privacy-policy" className="text-[#475467] hover:text-[#2D2D2D] transition-colors">
+                    Privacy Policy
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/terms" className="text-[#475467] hover:text-[#2D2D2D] transition-colors">
+                    Terms & Condition
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/refund-policy" className="text-[#475467] hover:text-[#2D2D2D] transition-colors">
+                    Refund Policy
+                  </Link>
                 </li>
               </ul>
             </div>
           </div>
         </div>
-        <div className="grid flex justify-center pb-5">
-          <p className="text-[#222] text-xs">© 2025 <Link href={'/'} className="text-[#ed7d00]">Hyperblog</Link> - All Rights Reserved</p>
+
+        {/* Bottom section */}
+        <div className="mt-3 flex flex-col items-center justify-center text-center pt-8 border-t border-gray-200">
+          <p className="text-sm text-[#475467]">
+            © 2025 <span className="text-[#ff7701]">Hyperblog</span>. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>

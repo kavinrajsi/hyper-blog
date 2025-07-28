@@ -36,7 +36,7 @@ export default function SplitCarousel() {
     <section className="py-16 px-4">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="mb-12">
+        <div className="mt-6">
           <h2 className="text-3xl font-bold text-[#101828] mb-4">Launch your Blog in 5 Mins</h2>
           <p className="text-[#0F0805] text-[16px] max-w-3xl">
             From sign-up to publish—your blog goes live in minutes, not days.
@@ -45,7 +45,7 @@ export default function SplitCarousel() {
 
         {/* Split Section */}
         <Tab.Group selectedIndex={activeStep} onChange={setActiveStep}>
-          <div className="flex flex-col md:flex-row gap-10 items-start">
+          <div className="flex flex-col md:flex-row gap-10 items-center">
             {/* Left: Steps List */}
             <div className="relative max-w-xl w-full">
               {activeStep <= 2 && (
@@ -93,30 +93,36 @@ export default function SplitCarousel() {
             </div>
 
             {/* Right: Image Panel */}
-            <Tab.Panels className="md:w-[540px] w-full" data-aos="fade-in">
-              {steps.map((tab, index) => (
-                <Transition
-                  key={index}
-                  show={activeStep === index}
-                  enter="transition-opacity duration-500"
-                  enterFrom="opacity-0"
-                  enterTo="opacity-100"
-                  leave="transition-opacity duration-300"
-                  leaveFrom="opacity-100"
-                  leaveTo="opacity-0"
-                >
-                  <Tab.Panel static={true}>
-                    <Image
-                      width={540}
-                      height={520}
-                      src={tab.img}
-                      alt={tab.imgAlt}
-                      className="rounded-xl"
-                    />
-                  </Tab.Panel>
-                </Transition>
-              ))}
-            </Tab.Panels>
+            <div className="relative md:w-[540px] w-full h-[520px]">
+              <Tab.Panels className="absolute inset-0">
+                {steps.map((tab, index) => (
+                  <Transition
+                    key={index}
+                    show={activeStep === index}
+                    enter="transition ease-in-out duration-500"
+                    enterFrom="opacity-0 translate-y-4"
+                    enterTo="opacity-100 translate-y-0"
+                    leave="transition ease-in-out duration-300"
+                    leaveFrom="opacity-100 translate-y-0"
+                    leaveTo="opacity-0 -translate-y-4"
+                  >
+                      <div className="absolute inset-0">
+
+                    <Tab.Panel static={true} className="h-full">
+                      <Image
+                        width={540}
+                        height={520}
+                        src={tab.img}
+                        alt={tab.imgAlt}
+                        className="rounded-xl"
+                        style={{ objectFit: 'contain' }}
+                      />
+                    </Tab.Panel>
+                    </div>
+                  </Transition>
+                ))}
+              </Tab.Panels>
+            </div>
           </div>
         </Tab.Group>
       </div>
