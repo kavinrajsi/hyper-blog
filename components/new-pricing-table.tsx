@@ -1,227 +1,162 @@
 'use client';
 
-import { useState } from 'react';
-import { FaCheck } from 'react-icons/fa';
+import { useEffect, useRef, useState } from 'react';
+import { FaRupeeSign, FaDollarSign } from "react-icons/fa";
 
-interface PlanFeatures {
-  autoTechnicalSEO: boolean;
-  connectOwnDomain: boolean;
-  members: string;
-  pageviewsMonth: string;
-  postsMonth: string;
-  subdirectoryHosting: boolean;
-  removeHyperblogBranding: boolean;
-  freeSSLAndCDN: boolean;
-  schedulePosts: boolean;
-  easyMigration: boolean;
-  abTesting: boolean;
-}
-
-interface Plan {
-  name: string;
-  description: string;
-  price: {
-    USD: string;
-    INR: string;
-  };
-  aiCredits: string;
-  isPopular?: boolean;
-  features: PlanFeatures;
-}
-
-type FeatureKey = keyof PlanFeatures;
-
-const renderFeatureValue = (features: PlanFeatures, key: keyof PlanFeatures) => {
-  const value = features[key];
-  if (typeof value === 'boolean') {
-    return value ? (
-      <svg className="mx-auto" width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <path d="M20 6L9 17L4 12" stroke="#039855" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
-    ) : (
-      <span className="text-[#667085] font-medium">-</span>
-    );
-  }
-  if (key === 'members' || key === 'pageviewsMonth' || key === 'postsMonth') {
-    return <span className="text-[#101828] font-medium">{value}</span>;
-  }
-  return value;
-};
 
 export default function NewPricingTable() {
   const [currency, setCurrency] = useState<'INR' | 'USD'>('INR');
+  const [isSticky, setIsSticky] = useState(false);
+  const [stopSticky, setStopSticky] = useState(false);
+  const tableWrapperRef = useRef<HTMLDivElement>(null);
+  const tableRef = useRef<HTMLTableElement>(null);
+  const lastRowRef = useRef<HTMLTableRowElement>(null);
 
   const plans = [
-    {
-      name: 'Free',
-      description: 'Best for personal use',
-      price: { USD: '$0', INR: '₹0' },
-      aiCredits: '-',
-      features: {
-        autoTechnicalSEO: false,
-        connectOwnDomain: false,
-        members: '-',
-        pageviewsMonth: '-',
-        postsMonth: '-',
-        subdirectoryHosting: false,
-        removeHyperblogBranding: false,
-        freeSSLAndCDN: false,
-        schedulePosts: false,
-        easyMigration: false,
-        abTesting: false
-      }
-    },
-    {
-      name: 'Launch',
-      description: 'Best for personal use',
-      price: { USD: '$25', INR: '₹2000' },
-      aiCredits: '400',
-      features: {
-        autoTechnicalSEO: true,
-        connectOwnDomain: true,
-        members: '1',
-        pageviewsMonth: '< 100,000',
-        postsMonth: '< 50',
-        subdirectoryHosting: true,
-        removeHyperblogBranding: true,
-        freeSSLAndCDN: true,
-        schedulePosts: true,
-        easyMigration: true,
-        abTesting: true
-      }
-    },
-    {
-      name: 'Grow',
-      description: 'Best for personal use',
-      price: { USD: '$45', INR: '₹4000' },
-      aiCredits: '1,200',
-      isPopular: true,
-      features: {
-        autoTechnicalSEO: true,
-        connectOwnDomain: true,
-        members: 'Upto 5',
-        pageviewsMonth: '< 100,000',
-        postsMonth: '< 100',
-        subdirectoryHosting: true,
-        removeHyperblogBranding: true,
-        freeSSLAndCDN: true,
-        schedulePosts: true,
-        easyMigration: true,
-        abTesting: true
-      }
-    },
-    {
-      name: 'Scale',
-      description: 'Best for personal use',
-      price: { USD: '$95', INR: '₹8000' },
-      aiCredits: '4,000',
-      features: {
-        autoTechnicalSEO: true,
-        connectOwnDomain: true,
-        members: 'Upto 10',
-        pageviewsMonth: '< 100,000',
-        postsMonth: '< 500',
-        subdirectoryHosting: true,
-        removeHyperblogBranding: true,
-        freeSSLAndCDN: true,
-        schedulePosts: true,
-        easyMigration: true,
-        abTesting: true
-      }
-    }
+    { name: 'Free', description: 'Best for personal use', price: { USD: '$0', INR: '₹0' }, features: Array(11).fill('-') },
+    { name: 'Launch', description: 'Best for personal use', price: { USD: '$38', INR: '2043' }, features: Array(11).fill('✔') },
+    { name: 'Grow', description: 'Best for personal use', price: { USD: '$94', INR: '4994' }, isPopular: true, features: Array(11).fill('✔') },
+    { name: 'Scale', description: 'Best for personal use', price: { USD: '$160', INR: '7492' }, features: Array(11).fill('✔') },
   ];
 
-  const featureLabels = {
-    aiCredits: 'AI Credits',
-    autoTechnicalSEO: 'Auto technical SEO',
-    connectOwnDomain: 'Connect your Own domain',
-    members: 'Member',
-    pageviewsMonth: 'Pageviews/Month',
-    postsMonth: 'Posts/Month',
-    subdirectoryHosting: 'Subdirectory hosting',
-    removeHyperblogBranding: 'Remove Hyperblog branding',
-    freeSSLAndCDN: 'Free SSL & CDN',
-    schedulePosts: 'Schedule Posts',
-    easyMigration: 'Easy migration from WordPress and other CMS',
-    abTesting: 'A/B Testing'
-  };
+  const featureLabels = [
+    'Auto technical SEO', 'Connect your Own domain', 'Member', 'Pageviews/Month',
+    'Posts/Month', 'Subdirectory hosting', 'Remove branding',
+    'Free SSL & CDN', 'Schedule Posts', 'Easy migration', 'A/B Testing'
+  ];
 
-  return (
-    <div className="max-w-[1200px] mx-auto px-4">
-      {/* Currency Selector */}
-      <div className="flex justify-end mb-8">
-        <button className="flex items-center gap-2 px-4 py-2 border border-gray-200 rounded-lg">
-          <span>₹ INR</span>
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-            <path d="M2 4L6 8L10 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-          </svg>
-        </button>
-      </div>
+  const addOns = [
+    { title: 'Extra Users', price: '$4', desc: '2 users/month' },
+    { title: 'Ai Credits', price: '$7.5', desc: '400/month' },
+    { title: 'Ai Credits', price: '$12.50', desc: '1000/month' },
+    { title: 'Domain', price: '$15', desc: '/month' },
+  ];
 
-      {/* Pricing Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        {plans.map((plan, index) => (
-          <div 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!tableWrapperRef.current || !tableRef.current) return;
+      const wrapperRect = tableWrapperRef.current.getBoundingClientRect();
+      const lastRowRect = lastRowRef.current?.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+
+      setIsSticky(wrapperRect.top <= 0 && wrapperRect.bottom > 400);
+      setStopSticky(!!lastRowRect && lastRowRect.top < windowHeight - 200);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const HeaderRow = ({ sticky = false }) => (
+    <thead className={`${sticky ? 'bg-white' : ''}`}>
+      <tr>
+        <th className="w-[240px] bg-white"></th>
+        {plans.map((plan) => (
+          <th
             key={plan.name}
-            className={`relative bg-white rounded-xl border ${
-              plan.isPopular ? 'border-[#FF7700]' : 'border-gray-200'
-            } p-6`}
+            className="relative bg-white px-5 py-6 text-center align-top rounded-t-2xl shadow-sm border border-gray-200"
+            style={{ width: 'calc((100% - 240px) / 4)' }}
           >
             {plan.isPopular && (
               <div className="absolute -top-3 left-0 right-0 flex justify-center">
-                <span className="bg-[#FF7700] text-white px-6 py-1.5 rounded-full text-sm font-medium">
-                  Most Popular ⭐️
+                <span className="bg-[#FF7700] text-white px-4 py-1 rounded-full text-xs font-medium">
+                  Most Popular ✨
                 </span>
               </div>
             )}
-            <h3 className="text-2xl font-bold text-[#101828]">{plan.name}</h3>
-            <p className="text-[#475467] text-sm mt-1">{plan.description}</p>
-            <div className="mt-6 mb-4">
-              <span className="text-4xl font-bold text-[#101828]">{plan.price[currency]}</span>
-              <span className="text-[#475467] ml-1">/month*</span>
+            <h3 className="text-xl font-semibold text-[#101828]">{plan.name}</h3>
+            <p className="text-xs mt-1 text-[#475467]">{plan.description}</p>
+            <div className="mt-4 mb-3">
+              <span className="text-3xl font-bold text-[#101828]">{plan.price[currency]}</span>
+              <span className="text-xs ml-1 text-[#475467]">/month*</span>
             </div>
-            <button className={`w-full ${
-              plan.isPopular ? 'bg-[#FF7700]' : 'bg-[#344054]'
-            } text-white rounded-lg py-2.5 mb-6 font-medium`}>
+            <button
+              className={`w-full ${plan.isPopular ? 'bg-[#FF7700]' : 'bg-[#344054]'} text-white rounded-lg py-2 mb-4 text-sm font-medium`}
+            >
               Coming Soon
             </button>
-            <p className="text-[#FF7700] text-sm mb-2">*Lorem Lorem Ipsum is simply dummy text of the</p>
-            <a href="#" className="text-[#475467] text-sm hover:text-[#101828] underline">Learn more</a>
-          </div>
+            <p className="text-[#FF7700] text-xs mb-2">*Lorem Ipsum dummy text</p>
+            <a href="#" className="text-xs text-[#475467] underline hover:text-[#101828]">Learn more</a>
+          </th>
         ))}
-      </div>
+      </tr>
+    </thead>
+  );
 
-      {/* Features Comparison Table */}
-      <div className="mt-16 overflow-x-auto relative">
-        <div className="sticky top-0 bg-white z-10 pb-4">
-          <div className="grid grid-cols-4 gap-6">
-            <div></div>
-            {plans.map((plan) => (
-              <div key={plan.name} className="text-center">
-                <h4 className="text-lg font-semibold text-[#101828]">{plan.name}</h4>
-                <p className="text-[#475467] text-sm">{plan.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-        <table className="w-full">
-          <tbody className="divide-y divide-dashed divide-gray-200">
-            {Object.entries(featureLabels).map(([key, label], idx) => (
-              <tr key={key} className={`${idx % 2 === 0 ? 'bg-[#F9FAFB]' : 'bg-white'}`}>
-                <td className="py-4 px-4 font-medium text-[#101828] text-sm border-b border-dashed border-gray-200">
+  return (
+    <div className="max-w-[1200px] mx-auto px-4 mt-[7em]">
+      {/* 🔹 Heading + Dropdown */}
+     <div className="relative flex justify-end items-center mb-[4em]">
+  <button className="absolute left-1/2 -translate-x-1/2 text-sm font-semibold text-[#FF7700] bg-[#FFF3E9] px-6 py-3 rounded-full">
+    Compare plans
+  </button>
+  <div className="relative inline-block">
+  <select
+    value={currency}
+    onChange={(e) => setCurrency(e.target.value as 'INR' | 'USD')}
+    className="appearance-none bg-orange-500 text-white font-semibold px-4 py-2 rounded-md pr-8 shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-300 cursor-pointer"
+  >
+    <option value="USD"><FaDollarSign /> USD</option>
+    <option value="INR"><FaRupeeSign /> INR</option>
+  </select>
+</div>
+</div>
+
+      {/* 🔹 Pricing Table */}
+      <div className="mt-6 relative" ref={tableWrapperRef}>
+        <table ref={tableRef} className="w-full border-separate border-spacing-0">
+          <HeaderRow />
+          <tbody>
+            {featureLabels.map((label, idx) => (
+              <tr
+                key={label}
+                ref={idx === featureLabels.length - 1 ? lastRowRef : null}
+                className={idx % 2 === 0 ? 'bg-white' : 'bg-[#F9FAFB]'}
+              >
+                <td className="py-4 px-4 text-sm font-medium text-[#101828]">
                   {label}
                 </td>
                 {plans.map((plan) => (
-                  <td key={plan.name} className="py-4 px-4 text-center border-b border-dashed border-gray-200">
-                    {key === 'aiCredits' ? (
-                      <span className="text-[#101828] font-medium">{plan.aiCredits}</span>
-                    ) : renderFeatureValue(plan.features, key as keyof PlanFeatures)}
+                  <td
+                    key={plan.name + label}
+                    className="py-4 px-4 text-center text-sm text-[#101828] border border-gray-200"
+                  >
+                    {plan.features[idx]}
                   </td>
                 ))}
               </tr>
             ))}
           </tbody>
         </table>
+
+        {/* 🔹 Sticky Floating Header */}
+        {isSticky && !stopSticky && (
+          <div
+            className="fixed top-0 left-1/2 transform -translate-x-1/2 bg-white z-30 rounded-t-2xl shadow-md"
+            style={{ width: tableRef.current?.offsetWidth }}
+          >
+            <table className="w-full border-separate border-spacing-0">
+              <HeaderRow sticky />
+            </table>
+          </div>
+        )}
+      </div>
+
+      {/* 🔹 Additional Add-ons Section */}
+      <div className="text-center mt-12">
+        <h3 className="text-xl font-semibold text-[#101828]">Our Additional add-ons</h3>
+        <div className="flex flex-wrap justify-center gap-4 mt-6">
+          {addOns.map((item) => (
+            <div
+              key={item.title + item.price}
+              className="border border-gray-200 rounded-lg shadow-sm px-6 py-4 w-48"
+            >
+              <h4 className="text-sm font-medium text-[#101828]">{item.title}</h4>
+              <p className="text-lg font-semibold text-[#101828] mt-1">{item.price}</p>
+              <p className="text-xs text-gray-500">{item.desc}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

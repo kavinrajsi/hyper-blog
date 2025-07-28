@@ -9,7 +9,7 @@ const nextConfig = {
   },
   trailingSlash: true,
   output: "export",
-  assetPrefix: process.env.NODE_ENV === 'production' ? 'https://hyperblog.io' : '', // Replace with your actual domain
+  assetPrefix: '', // Replace with your actual domain
   basePath: '',
   poweredByHeader: false,
   compress: true,
