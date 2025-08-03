@@ -81,7 +81,7 @@ export default function PricingTable() {
               </button>
             </div><div>
                <svg
-            className="absolute top-[18%] left-[47%] w-24 h-16 rotate-[192deg]"
+            className="absolute top-[9%] left-[47%] w-24 h-16 rotate-[192deg]"
             viewBox="0 0 100 50"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
