@@ -9,36 +9,32 @@ type FAQ = {
 
 const faqs: FAQ[] = [
   {
-    question: "1. What is a Blog CMS?",
-    answer: "A Blog CMS (Content Management System) is a platform that lets you write, manage, and publish blog content without needing to code. HyperBlog is a next-gen AI-powered Blog CMS — built not just for publishing, but for converting readers into leads.",
+    question: "1. Is there a free plan available?",
+    answer: "Yes! We offer a Free Forever plan — perfect for individuals just getting started. However, features like custom domains and advanced AI tools are only available in paid plans."
+    },
+  {
+    question: "2. Can I connect my custom domain on the free plan?",
+    answer: "Custom domain connection is only available in our Launch, Grow, and Scale plans. Free plan users can publish using a HyperBlog subdomain.",
   },
   {
-    question: "2. Does HyperBlog write blog content for me?",
-    answer: "Nope — HyperBlog doesn’t create your blog content. It enhances your existing content by automatically adding visuals (like banners and infographics), SEO tags, polls, lead magnets, and structured data — so your posts get more visibility,  drive better engagement and Leads.",
+    question: "3. Are my payments secure?",
+    answer: "Absolutely. All transactions are encrypted and securely processed through trusted global payment gateways.",
   },
   {
-    question: "3. Who is HyperBlog for?",
-    answer: "HyperBlog is for anyone who wants a smarter, more effective blog — without hiring developers, designers, or SEO specialists. Whether you're a creator, startup, media brand, or SaaS company, if you care about traffic and leads, it’s built for you.",
+    question: "4. Do you offer refunds?",
+    answer: "Yes — we have a clear refund policy in place. Please refer to our Refund Policy for details.",
   },
   {
-    question: "4. Can I connect HyperBlog to my current website?",
-    answer: "Yes! HyperBlog works with any website — whether it’s built on WordPress, Webflow, custom code, or anything else. You can connect it as a subfolder (like /blog), subdomain (like blog.yoursite.com), or even host it as your main site.",
+    question: "5. Can I upgrade or downgrade my plan anytime?",
+    answer: "Yes, you're in control. You can upgrade, downgrade, or cancel your subscription at any time from your account dashboard.",
   },
   {
-    question: "5. Can I use HyperBlog as my full website?",
-    answer: "Absolutely. If your primary goal is to publish blog content, articles, or run an online magazine, HyperBlog can serve as your main website — with all the built-in features you need for design, SEO, lead generation, and analytics.",
-  },
-  {
-    question: "6. What if I already have a lot of blogs published elsewhere?",
-    answer: "No problem. You can easily migrate your existing blogs to HyperBlog in minutes. Just connect your domain, import your content, and HyperBlog will handle everything — including optimizing your posts for SEO and adding visuals automatically.",
-  },
-  {
-    question: "7. What makes HyperBlog different from other blog platforms?",
-    answer: "Unlike traditional CMS tools that just let you publish content, HyperBlog is built to grow your audience and capture leads. It automatically handles SEO, adds banners, infographics, polls, and lead magnets — no designer or plugins needed. Plus, it’s fast to set up and works with any website. HyperBlog doesn’t just manage your blog — it turns it into a growth engine.",
+    question: "6. What happens if I hit my monthly usage limits?",
+    answer: "If you exceed your plan limits (posts, AI credits, leads, etc.), you'll receive a notification with the option to upgrade or purchase add-ons — no automatic charges.",
   },
 ];
 
-export default function FAQSection() {
+export default function FAQPricingSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggleFAQ = (index: number) => {

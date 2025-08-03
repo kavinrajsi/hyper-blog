@@ -1,35 +1,88 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { FaRupeeSign, FaDollarSign } from "react-icons/fa";
-
+import { FaRupeeSign, FaDollarSign, FaCheck, FaTimes } from 'react-icons/fa';
+import { IoChevronDown } from 'react-icons/io5';
 
 export default function NewPricingTable() {
   const [currency, setCurrency] = useState<'INR' | 'USD'>('INR');
+  const [isOpen, setIsOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
   const [stopSticky, setStopSticky] = useState(false);
   const tableWrapperRef = useRef<HTMLDivElement>(null);
   const tableRef = useRef<HTMLTableElement>(null);
   const lastRowRef = useRef<HTMLTableRowElement>(null);
 
-  const plans = [
-    { name: 'Free', description: 'Best for personal use', price: { USD: '$0', INR: '₹0' }, features: Array(11).fill('-') },
-    { name: 'Launch', description: 'Best for personal use', price: { USD: '$38', INR: '2043' }, features: Array(11).fill('✔') },
-    { name: 'Grow', description: 'Best for personal use', price: { USD: '$94', INR: '4994' }, isPopular: true, features: Array(11).fill('✔') },
-    { name: 'Scale', description: 'Best for personal use', price: { USD: '$160', INR: '7492' }, features: Array(11).fill('✔') },
+  const featureLabels = [
+    'AI Credits', 'Auto technical SEO', 'Easy migration from Wordpress and other CMS',
+    'Connect your Own domain', 'Team members access',
+    '< 100,000 pageviews/month (Unlimited pageview / Month)', 'Posts / Month',
+    'Subdirectory hosting', 'Remove Hyperblog branding', 'Free SSL & CDN',
+    'Schedule Posts', 'Google Analytics & GSC Integration', 'SEO Score',
+    'Author Bio', 'Ai Banner creation', 'Ai Lead Magnet', 'Blog templates',
+    '24/5 Support', 'Leads / Month', 'Ai Lead Magnet Design', 'AI Helper',
+    'AI Poll creation', 'Ai Infographics Creation', 'Ai Internal Links',
+    'Privacy-friendly Analytics', 'Collaborative review of posts',
+    'Restrict Free email Domains / Allow only official E-mails',
+    'Webhooks for Leads', 'API Access (self-serve)',
+    'Leads Magnet Analysis - which lead magnet provides more Leads',
+    'Individual Blog wise Leads', 'Blog Approval Flow',
+    'Spreadsheet / Google Docs to blog posts', 'Zapier integration'
   ];
 
-  const featureLabels = [
-    'Auto technical SEO', 'Connect your Own domain', 'Member', 'Pageviews/Month',
-    'Posts/Month', 'Subdirectory hosting', 'Remove branding',
-    'Free SSL & CDN', 'Schedule Posts', 'Easy migration', 'A/B Testing'
+  const plans = [
+    {
+      name: 'FREE',
+      description: 'For Individual Users & Content Bloggers',
+      price: { USD: '$0', INR: '₹0' },
+      features: [
+        '400','✔','✔','✔','2','✔','50','✔','✔','✔',
+        '✔','✔','✔','✔','✔','✔','Basic','24/5 Support','500','✔',
+        '✖','✖','✖','✖','✖','✖','✖','✖','✖','✖',
+        '✖','✖','✖','✖'
+      ],
+    },
+    {
+      name: 'LAUNCH',
+      description: 'For Solopreneurs & Early Stage Business',
+      price: { USD: '$44', INR: '₹2,322' },
+      features: [
+        '400','✔','✔','✔','2','✔','50','✔','✔','✔',
+        '✔','✔','✔','✔','✔','✔','Basic','24/5 Support','500','✔',
+        '✖','✖','✖','✖','✖','✖','✖','✖','✖','✖',
+        '✖','✖','✖','✖'
+      ],
+    },
+    {
+      name: 'GROW',
+      description: 'For small teams & Growing Business',
+      price: { USD: '$107', INR: '₹5,676' },
+      isPopular: true,
+      features: [
+        '1200','✔','✔','✔','5','✔','100','✔','✔','✔',
+        '✔','✔','✔','✔','✔','✔','Premium','24/5 Support','Unlimited','✔',
+        '✔','✔','✔','✔','✔','✔','✖','✖','✖','✖',
+        '✖','✖','✖','✖'
+      ],
+    },
+    {
+      name: 'SCALE',
+      description: 'For Fast-growing Modern Business',
+      price: { USD: '$141', INR: '₹8,514' },
+      features: [
+        '4000','✔','✔','✔','10','✔','250','✔','✔','✔',
+        '✔','✔','✔','✔','✔','✔','Pro','24/5 Priority Support','Unlimited','✔',
+        '✔','✔','✔','✔','✔','✔','✔','✔','✔','✔',
+        '✔','✔','✔','✔'
+      ],
+    },
   ];
 
   const addOns = [
-    { title: 'Extra Users', price: '$4', desc: '2 users/month' },
-    { title: 'Ai Credits', price: '$7.5', desc: '400/month' },
-    { title: 'Ai Credits', price: '$12.50', desc: '1000/month' },
-    { title: 'Domain', price: '$15', desc: '/month' },
+    { title: 'Extra Users', price: '$4', desc: '2 Users / Month' },
+    { title: 'AI Credits', price: '$7.5', desc: '400 / Month' },
+    { title: 'AI Credits', price: '$12.50', desc: '1000 / Month' },
+    { title: 'Domain', price: '$15', desc: '/ Month' },
   ];
 
   useEffect(() => {
@@ -47,36 +100,50 @@ export default function NewPricingTable() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const HeaderRow = ({ sticky = false }) => (
+  const HeaderRow = ({ sticky = false }: { sticky?: boolean }) => (
     <thead className={`${sticky ? 'bg-white' : ''}`}>
       <tr>
-        <th className="w-[240px] bg-white"></th>
+        <th className="w-1/5 bg-white px-5 py-6 text-center align-middle text-xl font-semibold text-[#101828] border border-gray-200">
+          Features
+        </th>
+
         {plans.map((plan) => (
           <th
             key={plan.name}
-            className="relative bg-white px-5 py-6 text-center align-top rounded-t-2xl shadow-sm border border-gray-200"
-            style={{ width: 'calc((100% - 240px) / 4)' }}
+            className={`w-1/5 relative bg-white px-5 py-6 text-center align-top rounded-t-2xl shadow-sm border border-gray-200 h-[200px] ${
+              plan.isPopular ? 'border-2 border-orange-500 shadow-lg' : ''
+            }`}
           >
-            {plan.isPopular && (
-              <div className="absolute -top-3 left-0 right-0 flex justify-center">
-                <span className="bg-[#FF7700] text-white px-4 py-1 rounded-full text-xs font-medium">
-                  Most Popular ✨
-                </span>
+            <div className="flex flex-col h-full">
+              {plan.isPopular && (
+                <div className="absolute -top-3 left-0 right-0 flex justify-center">
+                  <span className="bg-[#FF7700] text-white px-4 py-1 rounded-full text-xs font-medium">
+                    Most Popular ✨
+                  </span>
+                </div>
+              )}
+              <div className="flex-grow flex flex-col justify-between min-h-[120px]">
+                <div>
+                  <h3 className="text-xl font-semibold text-[#101828]">{plan.name}</h3>
+                  <span className="text-[#0F0805] font-[400] text-[13px] block mt-1">
+                    {plan.description}
+                  </span>
+                  <div className="mt-4 mb-3">
+                    <span className="text-3xl font-bold text-[#101828]">
+                      {plan.price[currency]}
+                    </span>
+                    <span className="text-xs ml-1 font-[400] text-[#475467]">/ month</span>
+                  </div>
+                </div>
               </div>
-            )}
-            <h3 className="text-xl font-semibold text-[#101828]">{plan.name}</h3>
-            <p className="text-xs mt-1 text-[#475467]">{plan.description}</p>
-            <div className="mt-4 mb-3">
-              <span className="text-3xl font-bold text-[#101828]">{plan.price[currency]}</span>
-              <span className="text-xs ml-1 text-[#475467]">/month*</span>
+              <div className="mt-4">
+                <button
+                  className={`w-full ${plan.isPopular ? 'bg-[#FF7700]' : 'bg-[#344054]'} text-white rounded-lg py-2 text-sm font-medium`}
+                >
+                  Try hyperblog for FREE
+                </button>
+              </div>
             </div>
-            <button
-              className={`w-full ${plan.isPopular ? 'bg-[#FF7700]' : 'bg-[#344054]'} text-white rounded-lg py-2 mb-4 text-sm font-medium`}
-            >
-              Coming Soon
-            </button>
-            <p className="text-[#FF7700] text-xs mb-2">*Lorem Ipsum dummy text</p>
-            <a href="#" className="text-xs text-[#475467] underline hover:text-[#101828]">Learn more</a>
           </th>
         ))}
       </tr>
@@ -84,27 +151,49 @@ export default function NewPricingTable() {
   );
 
   return (
-    <div className="max-w-[1200px] mx-auto px-4 mt-[7em]">
-      {/* 🔹 Heading + Dropdown */}
-     <div className="relative flex justify-end items-center mb-[4em]">
-  <button className="absolute left-1/2 -translate-x-1/2 text-sm font-semibold text-[#FF7700] bg-[#FFF3E9] px-6 py-3 rounded-full">
-    Compare plans
-  </button>
-  <div className="relative inline-block">
-  <select
-    value={currency}
-    onChange={(e) => setCurrency(e.target.value as 'INR' | 'USD')}
-    className="appearance-none bg-orange-500 text-white font-semibold px-4 py-2 rounded-md pr-8 shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-300 cursor-pointer"
-  >
-    <option value="USD"><FaDollarSign /> USD</option>
-    <option value="INR"><FaRupeeSign /> INR</option>
-  </select>
-</div>
-</div>
+    <div className="mx-auto max-w-7xl sm:px-6 px-4 mt-[7em]">
+      {/* Heading + Dropdown */}
+      <div className="relative flex justify-end items-center mb-[8em]">
+        <button className="absolute left-1/2 -translate-x-1/2 text-lg font-semibold text-[#FF7700] bg-[#FFF3E9] px-6 py-3 rounded-full">
+          Compare plans
+        </button>
+        {/* Currency Dropdown */}
+        <div className="relative w-[120px]">
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="flex items-center justify-between w-full bg-white border border-gray-300 rounded-lg px-4 py-2 text-[#101828] shadow-sm hover:shadow-md focus:outline-none"
+          >
+            <span className="flex items-center gap-2">
+              {currency === 'USD' ? <FaDollarSign className="text-sm" /> : <FaRupeeSign className="text-sm" />}
+              {currency}
+            </span>
+            <IoChevronDown />
+          </button>
+          {isOpen && (
+            <div className="absolute mt-1 w-full bg-white border border-gray-200 rounded-lg shadow-lg z-10 overflow-hidden">
+              {(['USD', 'INR'] as const).map((cur) => (
+                <div
+                  key={cur}
+                  onClick={() => {
+                    setCurrency(cur);
+                    setIsOpen(false);
+                  }}
+                  className={`flex items-center gap-2 px-4 py-2 text-sm font-medium cursor-pointer ${
+                    currency === cur ? 'bg-orange-500 text-white' : 'hover:bg-gray-100 text-[#101828]'
+                  }`}
+                >
+                  {cur === 'USD' ? <FaDollarSign /> : <FaRupeeSign />}
+                  {cur}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
 
-      {/* 🔹 Pricing Table */}
+      {/* Pricing Table */}
       <div className="mt-6 relative" ref={tableWrapperRef}>
-        <table ref={tableRef} className="w-full border-separate border-spacing-0">
+        <table ref={tableRef} className="w-full table-fixed border-separate border-spacing-0">
           <HeaderRow />
           <tbody>
             {featureLabels.map((label, idx) => (
@@ -113,51 +202,79 @@ export default function NewPricingTable() {
                 ref={idx === featureLabels.length - 1 ? lastRowRef : null}
                 className={idx % 2 === 0 ? 'bg-white' : 'bg-[#F9FAFB]'}
               >
-                <td className="py-4 px-4 text-sm font-medium text-[#101828]">
+                <td className="w-1/5 py-4 px-4 text-sm font-medium text-[#101828] border border-gray-200">
                   {label}
                 </td>
                 {plans.map((plan) => (
-                  <td
-                    key={plan.name + label}
-                    className="py-4 px-4 text-center text-sm text-[#101828] border border-gray-200"
-                  >
-                    {plan.features[idx]}
-                  </td>
+                 <td
+  key={plan.name + label}
+  className="w-1/5 py-4 px-4 text-center text-sm border border-gray-200"
+>
+  {plan.features[idx] === '✔' ? (
+    <svg
+      className="w-4 h-4 mx-auto text-[#101828]"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      viewBox="0 0 24 24"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M4 12c1.5 2 3 4 4.5 5 4-5 7-8 11-12"
+      />
+    </svg>
+  ) : plan.features[idx] === '✖' ? (
+    <svg
+      className="w-4 h-4 mx-auto text-red-500"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      viewBox="0 0 24 24"
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  ) : (
+    <span className="text-[#101828]">{plan.features[idx]}</span>
+  )}
+</td>
+
                 ))}
               </tr>
             ))}
           </tbody>
         </table>
 
-        {/* 🔹 Sticky Floating Header */}
+        {/* Sticky Floating Header */}
         {isSticky && !stopSticky && (
           <div
             className="fixed top-0 left-1/2 transform -translate-x-1/2 bg-white z-30 rounded-t-2xl shadow-md"
             style={{ width: tableRef.current?.offsetWidth }}
           >
-            <table className="w-full border-separate border-spacing-0">
+            <table className="w-full table-fixed border-separate border-spacing-0">
               <HeaderRow sticky />
             </table>
           </div>
         )}
       </div>
 
-      {/* 🔹 Additional Add-ons Section */}
-      <div className="text-center mt-12">
-        <h3 className="text-xl font-semibold text-[#101828]">Our Additional add-ons</h3>
-        <div className="flex flex-wrap justify-center gap-4 mt-6">
+      {/* Add-ons Section */}
+      <div className="text-center mt-24 mb-12 max-w-7xl mx-auto ">
+        <h3 className="text-[25px] pb-6 font-semibold text-[#101828]">Our Additional add-ons</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-6">
           {addOns.map((item) => (
             <div
               key={item.title + item.price}
-              className="border border-gray-200 rounded-lg shadow-sm px-6 py-4 w-48"
+              className="border border-gray-200 rounded-lg shadow-sm px-6 py-12"
             >
-              <h4 className="text-sm font-medium text-[#101828]">{item.title}</h4>
-              <p className="text-lg font-semibold text-[#101828] mt-1">{item.price}</p>
-              <p className="text-xs text-gray-500">{item.desc}</p>
+              <h4 className="text-xl font-semibold text-[#101828]">{item.title}</h4>
+              <p className="text-3xl font-bold text-[#101828] pt-4 pb-2">{item.price}</p>
+              <p className="text-xs text-[#ff7701] font-[500]">{item.desc}</p>
             </div>
           ))}
         </div>
       </div>
+
     </div>
   );
 }

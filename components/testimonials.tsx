@@ -68,8 +68,8 @@ export default function TestimonialCarousel() {
   return (
     <div className="w-full max-w-6xl mx-auto px-4 py-16">
       <div className="text-center mb-12">
-        <h2 className="text-3xl font-bold mb-2 text-black">What Our Customers Say</h2>
-        <p className="text-gray-500">Lorem Ipsum is simply dummy text of the printing and typesetting industry.        </p>
+        <h2 className="text-3xl font-bold mb-2 text-black">Real stories from users</h2>
+        <p className="text-gray-500">see how HyperBlog is transforming the way they publish, engage, and grow.</p>
       </div>
 
       <div className="relative">

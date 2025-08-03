@@ -3,8 +3,8 @@
 export default function Clients() {
   return (
     <section>
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 overflow-hidden mt-12">
-        <div className="border-t py-12 md:py-20 [border-image:linear-gradient(to_right,transparent,theme(colors.slate.400/.25),transparent)1]">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 pb-12 overflow-hidden">
+        <div className="border-t py-12 md:py-10 [border-image:linear-gradient(to_right,transparent,theme(colors.slate.400/.25),transparent)1]">
           {/* Section header */}
           <div className="mx-auto max-w-3xl pb-12 text-center md:pb-10">
             <h2 className="text-[#475467] font-nacelle text-3xl font-semibold bg-[length:200%_auto] bg-clip-text md:text-xl">

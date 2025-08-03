@@ -25,7 +25,6 @@ export default function Home() {
       <Middlehome2 />
       <SplitCarousel />
       <Features />
-      <Pricing />
       <Testimonials />
       <FAQSection />
       <Cta />

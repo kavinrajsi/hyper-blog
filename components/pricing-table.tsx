@@ -25,8 +25,8 @@ export default function PricingTable() {
     },
     INR: {
       free: { monthly: 0, yearly: 0 },
-      launch: { monthly: 2043, yearly: 5676 },
-      grow: { monthly: 4994, yearly: 5400 },
+      launch: { monthly: 2043, yearly: 2322 },
+      grow: { monthly: 4994, yearly: 5676 },
       scale: { monthly: 7492, yearly: 8514 },
     },
     SAVE: {
@@ -56,7 +56,7 @@ export default function PricingTable() {
   ];
 
   return (
-    <div>
+    <div className="mx-auto max-w-7xl px-4 sm:px-6">
       <div className="flex items-center justify-center mb-[100px]">
 
        <div className="flex items-center gap-6">
@@ -264,14 +264,15 @@ export default function PricingTable() {
                 {getPrice("launch")} <span className="text-[15px] text-[#18181B] font-inter font-[400]">/ month</span>
               </span>
             </div>
-           <div className="mb-[72px] flex items-center gap-2">
+           <div className="mb-[72px] flex items-center gap-2 min-h-[24px]">
               <div className="text-[15px] text-[#18181B] font-inter font-[400]">
-                {Monthly ? "billed yearly" : "Per user/month."}
+                {Monthly ? "billed yearly" : ""}
               </div>
               <div className="text-[15px] text-[#FF7700] font-inter font-[400]">
                 {Monthly && `(${getSavings('launch')})`}
               </div>
-           </div>
+            </div>
+
 
             <a
               className="btn-sm relative w-full bg-gradient-to-t from-gray-800 to-gray-800/60 
@@ -387,7 +388,7 @@ export default function PricingTable() {
         {/* Pricing table 3 */}
         <div className="relative flex h-full flex-col rounded-2xl bg-gradient-to-br from-white via-white to-white backdrop-blur-sm border-[3px] border-[#FF7700]">
            <div className="text-[14px] text-[#ffffff] font-[500] bg-[#FF7700] pt-1 text-center mb-4 pb-1 rounded-t-xl">
-              Most Popular
+              Most Popular ✨
             </div>
           <div className="relative mb-4 border-b pr-5 pl-5 pb-10 [border-image:linear-gradient(to_right,transparent,theme(colors.slate.400/.25),transparent)1]">
             <div className="text-[1.5rem] text-[#0F0805] font-[700]">
@@ -399,14 +400,15 @@ export default function PricingTable() {
                 {getPrice("grow")} <span className="text-[15px] text-[#18181B] font-inter font-[400]">/ month</span>
               </span>
             </div>
-            <div className="mb-[43px] flex items-center gap-2">
-              <div className="text-[15px] text-[#18181B] font-inter font-[400]">
-                {Monthly ? "billed yearly" : "Per user/month."}
-              </div>
-              <div className="text-[15px] text-[#FF7700] font-inter font-[400]">
-                {Monthly && `(${getSavings('grow')})`}
-              </div>
-           </div>
+            <div className="mb-[45px] flex items-center gap-2 min-h-[24px]">
+            <div className="text-[15px] text-[#18181B] font-inter font-[400]">
+              {Monthly ? "billed yearly" : ""}
+            </div>
+            <div className="text-[15px] text-[#FF7700] font-inter font-[400]">
+              {Monthly && `(${getSavings('grow')})`}
+            </div>
+          </div>
+
              <a
               className="btn-sm relative w-full bg-[#FF7700] 
               text-white font-bold text-[15px] px-6 py-2.5 rounded-[5px]
@@ -529,14 +531,15 @@ export default function PricingTable() {
                 {getPrice("scale")}<span className="text-[15px] text-[#18181B] font-inter font-[400]"> / month</span>
               </span>
             </div>
-            <div className="mb-[72px] flex items-center gap-2">
+            <div className="mb-[72px] flex items-center gap-2 min-h-[24px]">
               <div className="text-[15px] text-[#18181B] font-inter font-[400]">
-                {Monthly ? "billed yearly" : "Per user/month."}
+                {Monthly ? "billed yearly" : ""}
               </div>
               <div className="text-[15px] text-[#FF7700] font-inter font-[400]">
                 {Monthly && `(${getSavings('scale')})`}
               </div>
-           </div>
+            </div>
+
             <a
                className="btn-sm relative w-full bg-gradient-to-t from-gray-800 to-gray-800/60 
                 bg-[length:100%_100%] bg-[bottom] 

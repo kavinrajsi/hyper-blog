@@ -33,10 +33,10 @@ export default function SplitCarousel() {
   const [activeStep, setActiveStep] = useState(0);
 
   return (
-    <section className="py-16 px-4">
+    <section className="mx-auto max-w-6xl px-4 sm:px-6 py-8">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="mt-6">
+        <div className="">
           <h2 className="text-3xl font-bold text-[#101828] mb-4">Launch your Blog in 5 Mins</h2>
           <p className="text-[#0F0805] text-[16px] max-w-3xl">
             From sign-up to publish—your blog goes live in minutes, not days.
@@ -70,7 +70,7 @@ export default function SplitCarousel() {
                       {/* Number */}
                       <div
                         className={`w-12 h-12 rounded-full flex items-center justify-center text-lg font-medium shrink-0
-                          ${index <= activeStep ? 'bg-[#FFE9E0] text-[#000000]' : 'bg-[#FFE9E0] text-[#000000]'}
+                          ${index <= activeStep ? 'bg-[#e57a00] text-[#ffffff]' : 'bg-[#FFE9E0] text-[#000000]'}
                           transition-colors duration-300`}
                       >
                         {step.number}
@@ -80,7 +80,7 @@ export default function SplitCarousel() {
                       <div className="pt-3">
                         <h3
                           className={`text-xl font-semibold mb-2 transition-colors duration-300
-                            ${index <= activeStep ? 'text-[#101828]' : 'text-[#475467]'}`}
+                            ${index <= activeStep ? 'text-[#e57a00]' : 'text-[#475467]'}`}
                         >
                           {step.title}
                         </h3>

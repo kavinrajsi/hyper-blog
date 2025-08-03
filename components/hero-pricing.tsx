@@ -4,8 +4,6 @@ import AvatarImg01 from "@/public/images/avatar-01.jpg";
 import AvatarImg02 from "@/public/images/avatar-02.jpg";
 import AvatarImg03 from "@/public/images/avatar-03.jpg";
 import AvatarImg04 from "@/public/images/avatar-04.jpg";
-import PricingTable from "@/components/pricing-table";
-import NewPricingTable from "./new-pricing-table";
 
 export default function HeroPricing() {
   return (
@@ -20,8 +18,8 @@ export default function HeroPricing() {
                 data-aos="fade-up"
                 style={{ lineHeight: "1.4" }}
               >
-                The Only AI-Powered Blog CMS That Replaces 5+ Tools, Plugins —
-                Built to Rank and Convert
+                The Only AI-Powered Blog CMS That Replaces 
+                 <span className="text-[#e57a00]"> 5+ Tools, Plugins </span>— Built to Rank and Convert
               </h2>
               <p
                 className="mb-8 text-xl text-black"
@@ -118,8 +116,8 @@ export default function HeroPricing() {
             </div>
 
             {/* Pricing table */}
-            <PricingTable />
-            <NewPricingTable />
+            
+
           </div>
         </div>
       </section>

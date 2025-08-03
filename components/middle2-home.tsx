@@ -13,7 +13,7 @@ const tabContent: Record<TabKey, { title: string; description: string; image: st
       "Launching a new website or blog? Hyperblog plugs into any platform—WordPress, Webflow, custom code, or anything in between. No plugins, no technical setup.",
     image: "/images/Team-cuate.png",
     btnName: 'Get Started - Free ',
-    btnLink: 'https://www.hyperblog.cloud/login',
+    btnLink: '/#',
     content: 1
   },
   existing: {
@@ -22,7 +22,7 @@ const tabContent: Record<TabKey, { title: string; description: string; image: st
       "Moving to a new platform doesn’t have to mean starting over. Hyperblog makes migration fast, safe, and effortless—no matter what your site is built on.",
     image: "/images/Team-cuate2.png", // Replace with your actual second image
     btnName: 'Get Started - Free ',
-    btnLink: 'https://www.hyperblog.cloud/login',
+    btnLink: '/#',
     content: 2
   },
 };
