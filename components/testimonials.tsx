@@ -1,129 +1,142 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { FaArrowLeft, FaArrowRight, FaStar } from "react-icons/fa";
+import { useState, useEffect } from "react";
+import { FaStar } from "react-icons/fa";
 import Image from "next/image";
-import AvatarImg04 from "@/public/images/avatar-04.jpg";
-
+import AvatarImg04 from "@/public/images/avatar-04.jpg"; // Replace with actual images
 
 const testimonials = [
   {
-    name: "John Doe",
-    title: "Blogger",
-    company: "Web Design Agency",
+    name: "Redin",
+    title: "owner",
+    company: "ABC Marketing & Design",
+    text: "The price can't be beaten and the amazing customer service you get when you experience technical issues. I've used Hootsuite and SocialChamp and they don't come close to touching SocialPilot.",
     image: AvatarImg04,
   },
   {
-    name: "Jane Smith",
-    title: "Content Marketer",
-    company: "Web Design Agency",
+    name: "John",
+    title: "ABC President",
+    company: "Red Ball Consultants",
+    text: "I highly recommend this cost-effective option! It surpasses Hootsuite by providing valuable analytics for clients. Scheduling content is a breeze, and the suggested times feature is useful.",
     image: AvatarImg04,
   },
   {
-    name: "Mike Lee",
-    title: "Agency Owner",
-    company: "Web Design Agency",
+    name: "Jacken ",
+    title: "Abc Marketing Director",
+    company: "The Click Town",
+    text: "I highly recommend this platform! Unlike Hootsuite, I can confidently manage multiple accounts without worrying about surprise billing. The impressive stats and analytics make reporting to clients a breeze.",
     image: AvatarImg04,
   },
   {
-    name: "Emily Johnson",
-    title: "Designer",
-    company: "Web Design Agency",
+    name: "Joe Lee",
+    title: "Abc Manager",
+    company: "Blue Inc.",
+    text: "An essential tool in our daily workflow. It's easy to use and offers powerful scheduling features that make content management a breeze.",
     image: AvatarImg04,
   },
   {
-    name: "Chris Evans",
-    title: "Developer",
-    company: "Web Design Agency",
+    name: "Chris Lewis",
+    title: "Don",
+    company: "Abc code",
+    text: "I can’t believe how much time I’ve saved using this tool. Reporting is now so much faster and more impressive.",
     image: AvatarImg04,
   },
   {
-    name: "Sarah Parker",
-    title: "Project Manager",
-    company: "Web Design Agency",
+    name: "Yany J.",
+    title: "UI Leader",
+    company: "Pixie Studio",
+    text: "Simple, intuitive, and powerful. A must-have for every social media manager!",
+    image: AvatarImg04,
+  },
+  {
+    name: "Musk",
+    title: "Dummy",
+    company: "Abc Tools",
+    text: "I’ve tried many tools, but this one just nails everything I need. Affordable too.",
     image: AvatarImg04,
   },
 ];
-
-
 
 export default function TestimonialCarousel() {
   const [startIndex, setStartIndex] = useState(0);
   const visibleCount = 3;
 
-  const handleNext = () => {
-    setStartIndex((prev) => (prev + 1) % testimonials.length);
-  };
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setStartIndex((prev) => (prev + 1) % (testimonials.length - visibleCount + 1));
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
-  const handlePrev = () => {
-    setStartIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  };
-
-  const getVisibleTestimonials = () => {
-    return Array.from({ length: visibleCount }).map(
-      (_, i) => testimonials[(startIndex + i) % testimonials.length]
-    );
+  const handleDotClick = (index: number) => {
+    setStartIndex(index);
   };
 
   return (
-    <div className="w-full max-w-6xl mx-auto px-4 py-16">
-      <div className="text-center mb-12">
-        <h2 className="text-3xl font-bold mb-2 text-black">Real stories from users</h2>
-        <p className="text-gray-500">see how HyperBlog is transforming the way they publish, engage, and grow.</p>
-      </div>
+    <div className="w-full text-white py-8 px-4">
+      <div className="max-w-7xl mx-auto text-center">
+        <h2 className="text-3xl text-[#101828] font-bold mb-2">Real stories from users</h2>
+        <p className="text-[#101828] text-opacity-80 mb-12 pb-6">
+          See how HyperBlog is transforming the way they publish, engage, and grow.
+        </p>
 
-      <div className="relative">
+        {/* Carousel wrapper */}
         <div className="overflow-hidden">
           <div
             className="flex transition-transform duration-700 ease-in-out"
-            style={{ transform: `translateX(-${(100 / visibleCount) * startIndex}%)` }}
+            style={{ transform: `translateX(-${startIndex * (100 / visibleCount)}%)` }}
           >
-            {testimonials.map((testimonial, index) => (
+            {testimonials.map((t, index) => (
               <div
-                key={testimonial.name + index}
-                className={`flex-shrink-0 w-1/3 px-2 transform transition-all duration-700 ease-in-out ${
-                  index === startIndex ? "scale-105 opacity-100" : "scale-95 opacity-60"
-                }`}
+                key={index}
+                className="w-full sm:w-1/3 px-4 flex-shrink-0"
               >
-                <div className="relative rounded-lg overflow-hidden shadow-lg">
-                  <Image
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    width={500}
-                    height={500}
-                    className="w-full h-80 object-cover"
-                  />
-                  <div className="absolute bottom-0 left-0 right-0 bg-white/30 backdrop-blur-sm p-4 text-white">
-                    <div className="flex items-center mb-2">
-                      {Array(5)
-                        .fill(0)
-                        .map((_, i) => (
-                          <span key={i} className="text-white">★</span>
-                        ))}
-                    </div>
-                    <h3 className="text-lg font-bold text-white">{testimonial.name}</h3>
-                    <p className="text-sm text-white">{testimonial.title}</p>
-                    <p className="text-sm text-white">{testimonial.company}</p>
+                <div className="bg-white text-black rounded-xl shadow-lg px-6 py-6 h-full">
+                  {/* Avatar */}
+                  <div className="flex justify-center mb-4">
+                    <Image
+                      src={t.image}
+                      alt={t.name}
+                      className="w-20 h-20 rounded-full border-4 border-white shadow-md object-cover"
+                    />
                   </div>
+
+                  {/* Stars */}
+                  <div className="flex text-[#e57a00] mb-4 justify-center">
+                    {Array(5)
+                      .fill(0)
+                      .map((_, i) => (
+                        <FaStar key={i} />
+                      ))}
+                  </div>
+
+                  {/* Text */}
+                  <p className="text-gray-800 text-sm mb-4 text-center">{t.text}</p>
+
+                  {/* Name + Company */}
+                  <p className="font-bold text-gray-900 text-center">{t.name}</p>
+                  <p className="text-sm text-gray-500 text-center">
+                    {t.title} | {t.company}
+                  </p>
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="absolute left-0 bottom-0 z-50 flex space-x-2 ml-4 -mb-2" style={{ bottom: '-40px' }}>
-          <button
-            onClick={handlePrev}
-            className="p-2 rounded-full border border-black text-black bg-white hover:bg-black hover:text-white transition"
-          >
-            <FaArrowLeft size={16} />
-          </button>
-          <button
-            onClick={handleNext}
-            className="p-2 rounded-full border border-black text-black bg-white hover:bg-black hover:text-white transition"
-          >
-            <FaArrowRight size={16} />
-          </button>
+        {/* Dots */}
+        <div className="flex justify-center mt-8 space-x-2">
+          {Array(testimonials.length - visibleCount + 1)
+            .fill(0)
+            .map((_, i) => (
+              <button
+                key={i}
+                onClick={() => handleDotClick(i)}
+                className={`w-3 h-3 rounded-full transition ${
+                  i === startIndex ? "bg-[#e57a00]" : "bg-[#e57a00]/50"
+                }`}
+              ></button>
+            ))}
         </div>
       </div>
     </div>

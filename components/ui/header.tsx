@@ -45,12 +45,12 @@ export default function MegaMenu() {
                   -translate-x-1/2 ">
                   <div className="container mx-auto grid grid-cols-3 grid-rows-2 gap-3 text-white">
                     {[
-                      { title: "⁠Auto Technical SEO", link: "/#" },
-                      { title: "Blog to Banner", link: "/#" },
-                      { title: "Blog to Infographics", link: "/#" },
-                      { title: "Personalised Lead Magnet", link: "/#" },
-                      { title: "Customise Design", link: "/#" },
-                      { title: "Analytics", link: "/#" },
+                      { title: "⁠Auto Technical SEO", des: "Let HyperBlog handle all SEO tags, schema, speed & rankings.", link: "/#" },
+                      { title: "Blog to Banner", des: "Turn your blog headlines into stunning, ready-to-share social banners.", link: "/#" },
+                      { title: "Blog to Infographics", des: "Convert key blog takeaways into beautiful, lead-generating infographics.", link: "/#" },
+                      { title: "Personalised Lead Magnet", des: "Create and deliver tailored lead magnets for every blog — automatically.", link: "/#" },
+                      { title: "Customise Design", des: "Match blog design to your brand — layout, colors, typography & more.", link: "/#" },
+                      { title: "Analytics", des: "Track performance, leads, and top content — all in one place.", link: "/#" },
                     ].map((item, index) => (
                       <ul key={item.title} className="px-4 border-gray-600 border-b lg:border-b-0 pb-6 pt-6 hover:bg-[#ffe9e0] rounded-xl">
                         <div className="flex items-start">
@@ -90,7 +90,7 @@ export default function MegaMenu() {
                             <Link href={item.link} className="font-bold text-[#e57a00] text-[18px] mb-2">
                               {item.title}
                             </Link>
-                            <p className="text-[#ff7701] text-sm">Sample text for {item.title} description.</p>
+                            <p className="text-[#ff7701] text-sm">{item.des}</p>
                             </div>
                         </div>
                       </ul>
@@ -126,11 +126,11 @@ export default function MegaMenu() {
                   -translate-x-1/2 ">
                   <div className="container mx-auto grid grid-cols-3 grid-rows-2 gap-3 text-[#ff7701]">
                     {[
-                      { title: "⁠AI Blogging CMS for B2B", link: "/#" },
-                      { title: "AI Blogging CMS for SaaS", link: "/#" },
-                      { title: "AI Blogging CMS for B2C", link: "/#" },
-                      { title: "AI Blogging CMS for B2B Agency", link: "/#" },
-                      { title: "AI Blogging CMS for Startups", link: "/#" },
+                      { title: "⁠AI Blogging CMS for B2B", des: "Turn long sales cycles into inbound leads with conversion-optimized blogs.", link: "/#" },
+                      { title: "AI Blogging CMS for SaaS", des: "Drive product discovery and signups through SEO-smart, engaging blog content.", link: "/#" },
+                      { title: "AI Blogging CMS for B2C", des: "Build trust, rank higher, and convert readers into loyal customers.", link: "/#" },
+                      { title: "AI Blogging CMS for B2B Agency", des: "Offer smarter blog solutions to clients — fast, scalable, and SEO-ready.", link: "/#" },
+                      { title: "AI Blogging CMS for Startups", des: "Deliver visual-rich, high-performance blogs for every client — at scale.", link: "/#" },
                     ].map((item, index) => (
                       <ul key={item.title} className="px-4 border-gray-600 border-b lg:border-b-0 pb-6 pt-6 hover:bg-[#ffe9e0] rounded-xl">
                         <div className="flex items-start">
@@ -165,7 +165,7 @@ export default function MegaMenu() {
                             <Link href={item.link} className="font-bold text-[#e57a00] text-[18px] mb-2">
                               {item.title}
                             </Link>
-                            <p className="text-[#ff7701] text-sm">Sample text for {item.title} description.</p>
+                            <p className="text-[#ff7701] text-sm">{item.des}</p>
                             </div>
                         </div>
                       </ul>
