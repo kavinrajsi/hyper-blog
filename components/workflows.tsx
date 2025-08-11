@@ -8,7 +8,7 @@ import SupaDemoEmbed from './supa-demo-embed';
 const cardData = [
   {
     title: "Personalized Lead magnets",
-    desc: "HyperBlog analyzes each blog’s intent and automatically displays personalized lead magnets—maximizing conversions without manual effort.",
+    desc: "HyperBlog analyzes each blog’s intent and automatically displays personalized  lead magnets—maximizing conversions without manual effort.",
     embed: <SupaDemoEmbed />,
   },
   {
@@ -44,8 +44,8 @@ export default function Workflows() {
         </h3>
       </div> */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <h3 className="mb-4 animate-[gradient_6s_linear_infinite] bg-[linear-gradient(to_right,theme(colors.gray.200),theme(colors.indigo.200),theme(colors.gray.50),theme(colors.indigo.300),theme(colors.gray.200))] bg-[length:200%_auto] bg-clip-text pb-4 font-nacelle text-3xl text-center font-semibold text-black md:text-3xl leading-[5]">
-              Most CMSs = Publish<br/>
+        <h3 className="mb-12 animate-[gradient_6s_linear_infinite] bg-[linear-gradient(to_right,theme(colors.gray.200),theme(colors.indigo.200),theme(colors.gray.50),theme(colors.indigo.300),theme(colors.gray.200))] bg-[length:200%_auto] bg-clip-text pb-12 font-nacelle text-3xl text-center font-semibold text-black md:text-3xl leading-[5]">
+             <span className="text-[25px] text-gray-500"> Most CMSs = Publish</span><br/>
              <span className="text-[#e57a00]  leading-[2.2]"> HyperBlog </span>= Publish + Engage + Convert
             </h3>
         <div className="grid md:grid-cols-12 gap-10 min-h-[500px] items-center">

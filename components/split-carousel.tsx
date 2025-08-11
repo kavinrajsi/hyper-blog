@@ -10,21 +10,21 @@ const steps = [
     number: "1",
     title: "Sign Up",
     description: "Use your work email or Gmail to get started. No credit card, no friction.",
-    img: "/images/workflow-01.png",
+    img: "/images/sign_up.webp",
     imgAlt: "Sign Up Image",
   },
   {
     number: "2",
     title: "Name & Write Your Blog",
     description: "Give your blog a name (you can change it later), start writing, and let HyperBlog handle everything else—just hit publish.",
-    img: "/images/workflow-02.png",
+    img: "/images/write_blog.webp",
     imgAlt: "Migrate Blog Image",
   },
   {
     number: "3",
     title: "Connect Your Domain",
     description: "Easily link HyperBlog to your existing website and migrate old content in minutes. Your blog, your domain, your brand.",
-    img: "/images/workflow-03.png",
+    img: "/images/connect_domain.webp",
     imgAlt: "Domain Setup Image",
   },
 ];
@@ -93,8 +93,9 @@ export default function SplitCarousel() {
             </div>
 
             {/* Right: Image Panel */}
+            {/* <div className="relative md:w-[540px] w-full h-[520px] border border-[#e57a00] rounded-xl"> */}
             <div className="relative md:w-[540px] w-full h-[520px]">
-              <Tab.Panels className="absolute inset-0">
+              <Tab.Panels className=" absolute inset-0">
                 {steps.map((tab, index) => (
                   <Transition
                     key={index}
