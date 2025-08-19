@@ -80,7 +80,7 @@ export default function Middlehome1() {
                   src={integrate_site}
                   alt="Integrate Hyperblog"
                 /> */}
-                <img src="/images/integrate_site.png" className="inline-flex mt-auto p-3" alt="integrate_site" />
+                <img src="/images/integrate_image.webp" className="inline-flex mt-auto p-3" alt="integrate_site" />
 
                 </div>
             </div>

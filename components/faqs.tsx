@@ -63,9 +63,12 @@ export default function FAQSection() {
           <p className="text-[#475467] mb-6">
             We will answer all your questions. We ensure your response.
           </p>
-          <button className="bg-[#ff7701] text-white px-8 py-3 rounded-lg font-medium hover:bg-opacity-90 transition-colors">
-            Talk to us
-          </button>
+          <a
+            href="/#"
+            className="bg-[#ff7701] text-white px-8 py-3 rounded-lg font-medium hover:bg-opacity-90 transition-colors"
+          >
+            Join Waitlist
+          </a>
         </div>
 
         {/* Right Column - FAQs */}

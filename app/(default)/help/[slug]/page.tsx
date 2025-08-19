@@ -7,13 +7,11 @@ import FooterSeparator from "@/components/footer-separator";
 import { CustomMDX } from "@/components/mdx/mdx";
 
 export async function generateStaticParams() {
-  const allHelps = getHelpPages();
+  // Example: hardcoded posts (replace with CMS, API, or filesystem)
+  const slugs = ["#"];
 
-  return allHelps.map((post) => ({
-    slug: post.slug,
-  }));
+  return slugs.map((slug) => ({ slug }));
 }
-
 export async function generateMetadata(
   props: {
     params: Promise<{ slug: string }>;

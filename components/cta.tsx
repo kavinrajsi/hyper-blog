@@ -25,20 +25,19 @@ export default function Cta() {
             >
             Ready to Start Creating Smarter Blogs?
             </h2>
-            <p className="text-black">Get instant access to HyperBlog. No setup hassle — just enter your email and start exploring all the features free for 30 days.</p>
+            <p className="text-black">Get instant access to HyperBlog. No setup hassle — just enter your email and start exploring all the features.</p>
             <div className="mx-auto mt-8 max-w-xs sm:flex sm:max-w-none sm:justify-center">
               <div data-aos="fade-up" data-aos-delay={400}>
-                <a
-                  className="btn group mb-4 w-full bg-gradient-to-t from-[#E57A00] to-[#FB8500] bg-[length:100%_100%] bg-[bottom] text-white shadow-[inset_0px_1px_0px_0px_theme(colors.white/.16)] hover:bg-[length:100%_150%] sm:mb-0 sm:w-auto"
-                  href="#0"
-                >
-                  <span className="relative inline-flex items-center">
-                    Try Hyperblog for FREE
+                  <a
+                    href="/#"
+                    className="relative inline-flex items-center bg-[#ff7701] text-white px-6 py-3 rounded-lg font-medium hover:bg-opacity-90 transition-colors group"
+                  >
+                    Join Waitlist
                     <span className="ml-1 tracking-normal text-white/50 transition-transform group-hover:translate-x-0.5">
-                      {/* -&gt; */}
+                      →
                     </span>
-                  </span>
-                </a>
+                  </a>
+                
               </div>
             </div>
           </div>

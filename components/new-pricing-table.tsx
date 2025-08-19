@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { FaRupeeSign, FaDollarSign, FaCheck, FaTimes } from 'react-icons/fa';
+import { FaRupeeSign, FaDollarSign } from 'react-icons/fa';
 import { IoChevronDown } from 'react-icons/io5';
 
 export default function NewPricingTable() {
@@ -29,6 +29,18 @@ export default function NewPricingTable() {
     'Individual Blog wise Leads', 'Blog Approval Flow',
     'Spreadsheet / Google Docs to blog posts', 'Zapier integration'
   ];
+
+  // Tooltip text for specific labels
+  const tooltips: Record<string, string> = {
+    'AI Credits':
+      'Use these AI credits to create banners, infographics, polls, Lead Magnet',
+    'Author Bio':
+      'Adding Auhtor Bio increase your Blogs Expertise, Authoritativeness',
+    'Ai Lead Magnet':
+      'Create Personalised Lead Magnet which relates to the Blog',
+    'AI Helper':
+      'Helps to create Blog outline',
+  };
 
   const plans = [
     {
@@ -106,7 +118,6 @@ export default function NewPricingTable() {
         <th className="w-1/5 bg-white px-5 py-6 text-center align-middle text-xl font-semibold text-[#101828] border border-gray-200">
           Features
         </th>
-
         {plans.map((plan) => (
           <th
             key={plan.name}
@@ -203,42 +214,46 @@ export default function NewPricingTable() {
                 className={idx % 2 === 0 ? 'bg-white' : 'bg-[#F9FAFB]'}
               >
                 <td className="w-1/5 py-4 px-4 text-sm font-medium text-[#101828] border border-gray-200">
-                  {label}
+                  {tooltips[label] ? (
+                    <div className="relative group inline-block cursor-pointer">
+                      {label}
+                      <div className="absolute left-0 bottom-full mb-2 hidden group-hover:block w-56 bg-black text-white text-xs rounded-md px-3 py-2 shadow-lg z-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        {tooltips[label]}
+                      </div>
+                    </div>
+                  ) : (
+                    label
+                  )}
                 </td>
                 {plans.map((plan) => (
-                 <td
-  key={plan.name + label}
-  className="w-1/5 py-4 px-4 text-center text-sm border border-gray-200"
->
-  {plan.features[idx] === '✔' ? (
-    <svg
-      className="w-4 h-4 mx-auto text-[#101828]"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.8"
-      viewBox="0 0 24 24"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M4 12c1.5 2 3 4 4.5 5 4-5 7-8 11-12"
-      />
-    </svg>
-  ) : plan.features[idx] === '✖' ? (
-    <svg
-      className="w-4 h-4 mx-auto text-red-500"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      viewBox="0 0 24 24"
-    >
-      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-    </svg>
-  ) : (
-    <span className="text-[#101828]">{plan.features[idx]}</span>
-  )}
-</td>
-
+                  <td
+                    key={plan.name + label}
+                    className="w-1/5 py-4 px-4 text-center text-sm border border-gray-200"
+                  >
+                    {plan.features[idx] === '✔' ? (
+                      <svg
+                        className="w-4 h-4 mx-auto text-[#101828]"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.8"
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M4 12c1.5 2 3 4 4.5 5 4-5 7-8 11-12" />
+                      </svg>
+                    ) : plan.features[idx] === '✖' ? (
+                      <svg
+                        className="w-4 h-4 mx-auto text-red-500"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    ) : (
+                      <span className="text-[#101828]">{plan.features[idx]}</span>
+                    )}
+                  </td>
                 ))}
               </tr>
             ))}
@@ -274,7 +289,6 @@ export default function NewPricingTable() {
           ))}
         </div>
       </div>
-
     </div>
   );
 }

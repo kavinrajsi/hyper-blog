@@ -2,8 +2,9 @@
 
 import { useState, useEffect } from "react";
 import { FaStar } from "react-icons/fa";
+import { IoChevronBack, IoChevronForward } from "react-icons/io5";
 import Image from "next/image";
-import AvatarImg04 from "@/public/images/avatar-04.jpg"; // Replace with actual images
+import AvatarImg04 from "@/public/images/avatar-04.jpg";
 
 const testimonials = [
   {
@@ -72,16 +73,39 @@ export default function TestimonialCarousel() {
     setStartIndex(index);
   };
 
+  const handlePrev = () => {
+    setStartIndex((prev) =>
+      prev === 0 ? testimonials.length - visibleCount : prev - 1
+    );
+  };
+
+  const handleNext = () => {
+    setStartIndex((prev) =>
+      prev === testimonials.length - visibleCount ? 0 : prev + 1
+    );
+  };
+
   return (
     <div className="w-full text-white py-8 px-4">
-      <div className="max-w-7xl mx-auto text-center">
-        <h2 className="text-3xl text-[#101828] font-bold mb-2">Real stories from users</h2>
+      <div className="max-w-7xl mx-auto text-center relative">
+        <h2 className="text-3xl text-[#101828] font-bold mb-2">
+          Real stories from users
+        </h2>
         <p className="text-[#101828] text-opacity-80 mb-12 pb-6">
           See how HyperBlog is transforming the way they publish, engage, and grow.
         </p>
 
         {/* Carousel wrapper */}
-        <div className="overflow-hidden">
+        <div className="relative overflow-hidden">
+          {/* Left Arrow */}
+          <button
+            onClick={handlePrev}
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white text-[#101828] p-2 rounded-full shadow-md hover:bg-gray-100"
+          >
+            <IoChevronBack size={24} />
+          </button>
+
+          {/* Slides */}
           <div
             className="flex transition-transform duration-700 ease-in-out"
             style={{ transform: `translateX(-${startIndex * (100 / visibleCount)}%)` }}
@@ -92,7 +116,6 @@ export default function TestimonialCarousel() {
                 className="w-full sm:w-1/3 px-4 flex-shrink-0"
               >
                 <div className="bg-white text-black rounded-xl shadow-lg px-6 py-6 h-full">
-                  {/* Avatar */}
                   <div className="flex justify-center mb-4">
                     <Image
                       src={t.image}
@@ -100,8 +123,6 @@ export default function TestimonialCarousel() {
                       className="w-20 h-20 rounded-full border-4 border-white shadow-md object-cover"
                     />
                   </div>
-
-                  {/* Stars */}
                   <div className="flex text-[#e57a00] mb-4 justify-center">
                     {Array(5)
                       .fill(0)
@@ -109,11 +130,7 @@ export default function TestimonialCarousel() {
                         <FaStar key={i} />
                       ))}
                   </div>
-
-                  {/* Text */}
                   <p className="text-gray-800 text-sm mb-4 text-center">{t.text}</p>
-
-                  {/* Name + Company */}
                   <p className="font-bold text-gray-900 text-center">{t.name}</p>
                   <p className="text-sm text-gray-500 text-center">
                     {t.title} | {t.company}
@@ -122,6 +139,14 @@ export default function TestimonialCarousel() {
               </div>
             ))}
           </div>
+
+          {/* Right Arrow */}
+          <button
+            onClick={handleNext}
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white text-[#101828] p-2 rounded-full shadow-md hover:bg-gray-100"
+          >
+            <IoChevronForward size={24} />
+          </button>
         </div>
 
         {/* Dots */}

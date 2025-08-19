@@ -182,7 +182,7 @@ export default function MegaMenu() {
               </a>
             </li>
             <li className="text-[#ff7701] hover:text-[#ff7701]">
-              <a href="/blog" className="relative block py-6 px-2 lg:p-6 text-sm lg:text-base">
+              <a href="/" className="relative block py-6 px-2 lg:p-6 text-sm lg:text-base">
                 Blogs
               </a>
             </li>
@@ -198,7 +198,7 @@ export default function MegaMenu() {
             </li>
             <li className="flex items-center">
               <Link
-                href="/signin"
+                href="/#"
                 className="btn-sm relative bg-[#ED811F] bg-[length:100%_100%] bg-[bottom] px-4 py-2 text-white 
                   before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] 
                   before:border before:border-white before:[background:linear-gradient(to_right,#FFFFFF,#FFFFFF,#FFFFFF)_border-box] 
