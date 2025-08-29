@@ -60,14 +60,30 @@ const testimonials = [
 
 export default function TestimonialCarousel() {
   const [startIndex, setStartIndex] = useState(0);
-  const visibleCount = 3;
+  const [visibleCount, setVisibleCount] = useState(3);
+
+  // responsive visibleCount
+  useEffect(() => {
+    const updateVisibleCount = () => {
+      if (window.innerWidth < 640) {
+        setVisibleCount(1); // mobile
+      } else if (window.innerWidth < 1024) {
+        setVisibleCount(2); // tablet
+      } else {
+        setVisibleCount(3); // desktop
+      }
+    };
+    updateVisibleCount();
+    window.addEventListener("resize", updateVisibleCount);
+    return () => window.removeEventListener("resize", updateVisibleCount);
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setStartIndex((prev) => (prev + 1) % (testimonials.length - visibleCount + 1));
     }, 5000);
     return () => clearInterval(interval);
-  }, []);
+  }, [visibleCount]);
 
   const handleDotClick = (index: number) => {
     setStartIndex(index);
@@ -113,7 +129,7 @@ export default function TestimonialCarousel() {
             {testimonials.map((t, index) => (
               <div
                 key={index}
-                className="w-full sm:w-1/3 px-4 flex-shrink-0"
+                className={`w-full ${visibleCount === 1 ? "sm:w-full" : visibleCount === 2 ? "sm:w-1/2" : "sm:w-1/3"} px-4 flex-shrink-0`}
               >
                 <div className="bg-white text-black rounded-xl shadow-lg px-6 py-6 h-full">
                   <div className="flex justify-center mb-4">

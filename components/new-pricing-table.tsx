@@ -30,7 +30,6 @@ export default function NewPricingTable() {
     'Spreadsheet / Google Docs to blog posts', 'Zapier integration'
   ];
 
-  // Tooltip text for specific labels
   const tooltips: Record<string, string> = {
     'AI Credits':
       'Use these AI credits to create banners, infographics, polls, Lead Magnet',
@@ -204,69 +203,72 @@ export default function NewPricingTable() {
 
       {/* Pricing Table */}
       <div className="mt-6 relative" ref={tableWrapperRef}>
-        <table ref={tableRef} className="w-full table-fixed border-separate border-spacing-0">
-          <HeaderRow />
-          <tbody>
-            {featureLabels.map((label, idx) => (
-              <tr
-                key={label}
-                ref={idx === featureLabels.length - 1 ? lastRowRef : null}
-                className={idx % 2 === 0 ? 'bg-white' : 'bg-[#F9FAFB]'}
-              >
-                <td className="w-1/5 py-4 px-4 text-sm font-medium text-[#101828] border border-gray-200">
-                  {tooltips[label] ? (
-                    <div className="relative group inline-block cursor-pointer">
-                      {label}
-                      <div className="absolute left-0 bottom-full mb-2 hidden group-hover:block w-56 bg-black text-white text-xs rounded-md px-3 py-2 shadow-lg z-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        {tooltips[label]}
+        {/* Scrollable wrapper */}
+        <div className="overflow-x-auto -mx-4 sm:mx-0">
+          <table ref={tableRef} className="min-w-[700px] w-full table-fixed border-separate border-spacing-0">
+            <HeaderRow />
+            <tbody>
+              {featureLabels.map((label, idx) => (
+                <tr
+                  key={label}
+                  ref={idx === featureLabels.length - 1 ? lastRowRef : null}
+                  className={idx % 2 === 0 ? 'bg-white' : 'bg-[#F9FAFB]'}
+                >
+                  <td className="w-1/5 py-4 px-4 text-sm font-medium text-[#101828] border border-gray-200">
+                    {tooltips[label] ? (
+                      <div className="relative group inline-block cursor-pointer">
+                        {label}
+                        <div className="absolute left-0 bottom-full mb-2 hidden group-hover:block w-56 bg-black text-white text-xs rounded-md px-3 py-2 shadow-lg z-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          {tooltips[label]}
+                        </div>
                       </div>
-                    </div>
-                  ) : (
-                    label
-                  )}
-                </td>
-                {plans.map((plan) => (
-                  <td
-                    key={plan.name + label}
-                    className="w-1/5 py-4 px-4 text-center text-sm border border-gray-200"
-                  >
-                    {plan.features[idx] === '✔' ? (
-                      <svg
-                        className="w-4 h-4 mx-auto text-[#101828]"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1.8"
-                        viewBox="0 0 24 24"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M4 12c1.5 2 3 4 4.5 5 4-5 7-8 11-12" />
-                      </svg>
-                    ) : plan.features[idx] === '✖' ? (
-                      <svg
-                        className="w-4 h-4 mx-auto text-red-500"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        viewBox="0 0 24 24"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                      </svg>
                     ) : (
-                      <span className="text-[#101828]">{plan.features[idx]}</span>
+                      label
                     )}
                   </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
+                  {plans.map((plan) => (
+                    <td
+                      key={plan.name + label}
+                      className="w-1/5 py-4 px-4 text-center text-sm border border-gray-200"
+                    >
+                      {plan.features[idx] === '✔' ? (
+                        <svg
+                          className="w-4 h-4 mx-auto text-[#101828]"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.8"
+                          viewBox="0 0 24 24"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M4 12c1.5 2 3 4 4.5 5 4-5 7-8 11-12" />
+                        </svg>
+                      ) : plan.features[idx] === '✖' ? (
+                        <svg
+                          className="w-4 h-4 mx-auto text-red-500"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          viewBox="0 0 24 24"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      ) : (
+                        <span className="text-[#101828]">{plan.features[idx]}</span>
+                      )}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
 
         {/* Sticky Floating Header */}
         {isSticky && !stopSticky && (
           <div
-            className="fixed top-0 left-1/2 transform -translate-x-1/2 bg-white z-30 rounded-t-2xl shadow-md"
+            className="fixed top-0 left-1/2 transform -translate-x-1/2 bg-white z-30 rounded-t-2xl shadow-md overflow-x-auto"
             style={{ width: tableRef.current?.offsetWidth }}
           >
-            <table className="w-full table-fixed border-separate border-spacing-0">
+            <table className="min-w-[700px] w-full table-fixed border-separate border-spacing-0">
               <HeaderRow sticky />
             </table>
           </div>

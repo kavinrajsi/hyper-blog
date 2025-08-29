@@ -1,9 +1,8 @@
 "use client";
 import { useState } from "react";
-import Spotlight from "@/components/spotlight";
 import Clients from "@/components/clients";
 import Feature_section from "@/components/feature_section";
-import SupaDemoEmbed from './supa-demo-embed';
+import SupaDemoEmbed from "./supa-demo-embed";
 
 const cardData = [
   {
@@ -25,7 +24,7 @@ const cardData = [
     title: "Blog to Infography",
     desc: "Easily convert blogs to informative infographics to increase visual engagement and simplify complex content.",
     image: "/images/blog-infographic.gif",
-  }
+  },
 ];
 
 export default function Workflows() {
@@ -33,23 +32,21 @@ export default function Workflows() {
 
   return (
     <section className="mt-6">
-      
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
-       <h3
-  className="animate-[gradient_6s_linear_infinite] bg-[linear-gradient(to_right,theme(colors.gray.200),theme(colors.indigo.200),theme(colors.gray.50),theme(colors.indigo.300),theme(colors.gray.200))] bg-[length:200%_auto] bg-clip-text pb-12 md:pb-12 font-nacelle text-xl md:text-3xl text-center font-semibold text-black leading-[1.8] md:leading-snug"
->
-  <span className="block text-lg md:text-3xl text-gray-500">
-    Most CMSs = Publish
-  </span>
-  <span className="block text-lg md:text-3xl leading-[1.8] md:leading-[2]">
-    <span className="text-[#e57a00]">Hyperblog</span> = Publish + Engage + Convert
-  </span>
-</h3>
+        <h3
+          className="animate-[gradient_6s_linear_infinite] bg-[linear-gradient(to_right,theme(colors.gray.200),theme(colors.indigo.200),theme(colors.gray.50),theme(colors.indigo.300),theme(colors.gray.200))] bg-[length:200%_auto] bg-clip-text pb-12 md:pb-12 font-nacelle text-xl md:text-3xl text-center font-semibold text-black leading-[1.8] md:leading-snug"
+        >
+          <span className="block text-lg md:text-3xl text-gray-500">
+            Most CMSs = Publish
+          </span>
+          <span className="block text-lg md:text-3xl leading-[1.8] md:leading-[2]">
+            <span className="text-[#e57a00]">Hyperblog</span> = Publish + Engage + Convert
+          </span>
+        </h3>
 
-
-        <div className="grid md:grid-cols-12 gap-10 min-h-[500px] items-center">
+        <div className="grid md:grid-cols-12 gap-10 min-h-[500px] items-start">
           {/* Left Column */}
-          <div className="md:col-span-3 flex items-center h-full">
+          <div className="md:col-span-3 flex items-start h-full">
             <div className="w-full space-y-9">
               {cardData.map((card, index) => {
                 const isActive = activeIndex === index;
@@ -83,15 +80,32 @@ export default function Workflows() {
                           strokeWidth={3}
                           viewBox="0 0 24 24"
                         >
-                          <path d="M19 9l-7 7-7-7" strokeLinecap="round" strokeLinejoin="round" />
+                          <path
+                            d="M19 9l-7 7-7-7"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
                         </svg>
                       </span>
                     </button>
 
-                    {/* Description always rendered for active item */}
+                    {/* Description + Mobile image/embed */}
                     {isActive && (
                       <div className="px-6 pb-4 text-[15px] text-black animate-fade-in">
                         {card.desc}
+
+                        {/* Show image/embed BELOW description only on mobile */}
+                        <div className="mt-4 block md:hidden">
+                          {card.image ? (
+                            <img
+                              src={card.image}
+                              alt="Feature"
+                              className="w-full h-auto rounded-xl"
+                            />
+                          ) : (
+                            card.embed
+                          )}
+                        </div>
                       </div>
                     )}
                   </div>
@@ -100,18 +114,18 @@ export default function Workflows() {
             </div>
           </div>
 
-          {/* Right Column */}
-<div className="md:col-span-9 flex items-center justify-center rounded-xl overflow-hidden transition-all duration-500">
-  {cardData[activeIndex].image ? (
-    <img
-      src={cardData[activeIndex].image}
-      alt="Selected Feature"
-      className="w-auto h-[500px] object-contain rounded-xl"
-    />
-  ) : (
-    cardData[activeIndex].embed
-  )}
-</div>
+          {/* Right Column (Desktop only) */}
+          <div className="md:col-span-9 hidden md:flex items-center justify-center rounded-xl overflow-hidden transition-all duration-500">
+            {cardData[activeIndex].image ? (
+              <img
+                src={cardData[activeIndex].image}
+                alt="Selected Feature"
+                className="w-auto h-[500px] object-contain rounded-xl"
+              />
+            ) : (
+              cardData[activeIndex].embed
+            )}
+          </div>
         </div>
 
         <div className="mt-20">

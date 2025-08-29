@@ -9,14 +9,14 @@ export default function PricingTable() {
   const [selected, setSelected] = useState<"USD" | "INR">("USD");
   const [isOpen, setIsOpen] = useState(false);
 
- const toggleDropdown = () => setIsOpen(!isOpen);
+  const toggleDropdown = () => setIsOpen(!isOpen);
 
   const selectCurrency = (currency: "USD" | "INR") => {
     setSelected(currency);
     setIsOpen(false);
   };
 
-   const prices = {
+  const prices = {
     USD: {
       free: { monthly: 0, yearly: 0 },
       launch: { monthly: 38, yearly: 44 },
@@ -50,105 +50,103 @@ export default function PricingTable() {
     return savings > 0 ? `Save ${symbol}${savings.toLocaleString()} /Year` : "";
   };
 
-  const currencies = [
-    { code: "INR", symbol: <FaRupeeSign /> },
-    { code: "USD", symbol: <FaDollarSign /> },
-  ];
-
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6">
-      <div className="flex items-center justify-center mb-[100px]">
-
-       <div className="flex items-center gap-6">
-          {/* Toggle */}
-          <div className="flex items-center gap-4">
-            <div className="flex w-[200px] p-1 rounded-full bg-white shadow-md">
-              <button
-                onClick={() => setMonthly(false)}
-                className={`flex-1 rounded-full py-2 text-center text-sm font-semibold ${
-                  !Monthly ? "bg-[#FF7700] text-white" : "text-[#475467]"
-                } transition-all duration-200`}
-              >
-                Monthly
-              </button>
-              <button
-                onClick={() => setMonthly(true)}
-                className={`flex-1 rounded-full py-2 text-center text-sm font-semibold ${
-                  Monthly ? "bg-[#FF7700] text-white" : "text-[#475467]"
-                } transition-all duration-200`}
-              >
-                Yearly
-              </button>
-            </div><div>
-               <svg
-            className="absolute top-[9%] left-[47%] w-24 h-16 rotate-[192deg]"
-            viewBox="0 0 100 50"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M0 50 C30 0, 70 0, 100 20"
-              stroke="#1E2C27"
-              strokeWidth="2"
-              fill="none"
-              markerEnd="url(#arrowhead)"
-            />
-            <defs>
-              <marker
-                id="arrowhead"
-                markerWidth="8"
-                markerHeight="8"
-                refX="6"
-                refY="3"
-                orient="auto"
-              >
-                <path d="M0,0 L0,6 L6,3 Z" fill="#1E2C27" />
-              </marker>
-            </defs>
-          </svg>
-</div>
-            <div className="text-sm font-semibold text-[#FF7700]">GET 12% DISCOUNT</div>
+      {/* ---- Top Controls ---- */}
+      <div className="flex flex-col lg:flex-row items-center justify-center gap-6 mb-[100px]">
+        {/* Toggle + Discount */}
+        <div className="flex flex-col sm:flex-row items-center gap-4">
+          <div className="flex w-[200px] p-1 rounded-full bg-white shadow-md">
+            <button
+              onClick={() => setMonthly(false)}
+              className={`flex-1 rounded-full py-2 text-center text-sm font-semibold ${
+                !Monthly ? "bg-[#FF7700] text-white" : "text-[#475467]"
+              } transition-all duration-200`}
+            >
+              Monthly
+            </button>
+            <button
+              onClick={() => setMonthly(true)}
+              className={`flex-1 rounded-full py-2 text-center text-sm font-semibold ${
+                Monthly ? "bg-[#FF7700] text-white" : "text-[#475467]"
+              } transition-all duration-200`}
+            >
+              Yearly
+            </button>
           </div>
 
-          <div className="relative">
-  <button
-    onClick={toggleDropdown}
-    className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md shadow-sm bg-white-100 text-gray-800 hover:bg-[#ff7701] hover:text-white transition-colors"
-  >
-    {selected === "USD" ? (
-      <>
-        <FaDollarSign /> USD
-      </>
-    ) : (
-      <>
-        <FaRupeeSign /> INR
-      </>
-    )}
-    <IoChevronDown />
-  </button>
+          {/* Arrow + Text */}
+          <div className="flex items-center gap-2 relative">
+            <svg
+              className="hidden sm:block absolute -top-0 left-1/2 -translate-x-1/2 w-20 h-12 rotate-[192deg]"
+              viewBox="0 0 100 50"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M0 50 C30 0, 70 0, 100 20"
+                stroke="#1E2C27"
+                strokeWidth="2"
+                fill="none"
+                markerEnd="url(#arrowhead)"
+              />
+              <defs>
+                <marker
+                  id="arrowhead"
+                  markerWidth="8"
+                  markerHeight="8"
+                  refX="6"
+                  refY="3"
+                  orient="auto"
+                >
+                  <path d="M0,0 L0,6 L6,3 Z" fill="#1E2C27" />
+                </marker>
+              </defs>
+            </svg>
+            <div className="text-sm font-semibold text-[#FF7700] whitespace-nowrap">
+              GET 12% DISCOUNT
+            </div>
+          </div>
+        </div>
 
-  {isOpen && (
-    <div className="absolute z-10 bg-white border border-gray-200 shadow-md mt-1 w-full rounded-md">
-      <div
-        className="px-4 py-2 hover:bg-[#ff7701] hover:text-white text-gray-700 cursor-pointer flex items-center gap-2"
-        onClick={() => selectCurrency("USD")}
-      >
-        <FaDollarSign /> USD
+        {/* Currency Dropdown */}
+        <div className="relative w-full sm:w-auto">
+          <button
+            onClick={toggleDropdown}
+            className="flex items-center justify-center gap-2 w-full sm:w-auto px-3 py-2 border border-gray-300 rounded-md shadow-sm bg-white text-gray-800 hover:bg-[#ff7701] hover:text-white transition-colors"
+          >
+            {selected === "USD" ? (
+              <>
+                <FaDollarSign /> USD
+              </>
+            ) : (
+              <>
+                <FaRupeeSign /> INR
+              </>
+            )}
+            <IoChevronDown />
+          </button>
+
+          {isOpen && (
+            <div className="absolute z-10 bg-white border border-gray-200 shadow-md mt-1 w-full rounded-md">
+              <div
+                className="px-4 py-2 hover:bg-[#ff7701] hover:text-white text-gray-700 cursor-pointer flex items-center gap-2"
+                onClick={() => selectCurrency("USD")}
+              >
+                <FaDollarSign /> USD
+              </div>
+              <div
+                className="px-4 py-2 hover:bg-[#ff7701] hover:text-white text-gray-700 cursor-pointer flex items-center gap-2"
+                onClick={() => selectCurrency("INR")}
+              >
+                <FaRupeeSign /> INR
+              </div>
+            </div>
+          )}
+        </div>
       </div>
-      <div
-        className="px-4 py-2 hover:bg-[#ff7701] hover:text-white text-gray-700 cursor-pointer flex items-center gap-2"
-        onClick={() => selectCurrency("INR")}
-      >
-        <FaRupeeSign /> INR
-      </div>
-    </div>
-  )}
-</div>
 
-    </div>
-    </div>
-
-      <div className="mx-auto grid max-w-xs items-start gap-8 md:max-w-2xl md:grid-cols-2 xl:max-w-none xl:grid-cols-4 xl:gap-6">
+      <div className="mx-auto grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6Compare plans">
         {/* Pricing table 1 */}
         <div className="relative flex h-full flex-col rounded-2xl bg-gradient-to-br from-white via-white to-white p-5 backdrop-blur-sm border border-[#E4E4E7]">
           <div className="relative mb-4 border-b pb-5 [border-image:linear-gradient(to_right,transparent,theme(colors.slate.400/.25),transparent)1]">

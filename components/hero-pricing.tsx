@@ -10,7 +10,7 @@ export default function HeroPricing() {
     <>
       <section className="relative">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <div className="border-t py-12">
+          <div className="border-t pt-12">
             {/* Section header */}
             <div className="mx-auto max-w-6xl pt-3 text-center">
               <h2
@@ -18,8 +18,11 @@ export default function HeroPricing() {
                 data-aos="fade-up"
                 style={{ lineHeight: "1.4" }}
               >
-                The Only AI-Powered Blog CMS That Replaces 
-                 <span className="text-[#e57a00]"> 5+ Tools, Plugins </span>— Built to Rank and Convert
+                The Only AI-Powered Blog CMS That Replaces{" "}
+                <span className="text-[#e57a00] whitespace-nowrap">
+                  5+ Tools, Plugins&nbsp;—
+                </span>{" "}
+                Built to Rank and Convert
               </h2>
               <p
                 className="mb-8 text-xl text-black"
@@ -34,90 +37,75 @@ export default function HeroPricing() {
             </div>
 
             {/* ✅ Checklist Section */}
-            <div className="mx-auto max-w-6xl flex flex-wrap justify-center items-center gap-10 pb-8 mb-24 text-gray-700">
+            <div className="mx-auto max-w-6xl flex flex-wrap justify-start sm:justify-center items-start sm:items-center gap-6 sm:gap-10 pb-8 mb-12 text-gray-700">
               {/* Item 1 */}
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 w-full sm:w-auto">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="w-10 h-10 text-[#ff7701]"
+                  className="w-8 h-8 sm:w-10 sm:h-10 text-[#ff7701]"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
                   strokeWidth={2}
                 >
-                  <circle
-                    cx="12"
-                    cy="12"
-                    r="9"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    fill="none"
-                  />
+                  <circle cx="12" cy="12" r="9" />
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                   d="M7.5 12.5l3 3 6-6"
+                    d="M7.5 12.5l3 3 6-6"
                   />
                 </svg>
-                <span className="text-lg text-black">No Lead Magnet Builders</span>
+                <span className="text-base sm:text-lg text-black">
+                  No Lead Magnet Builders
+                </span>
               </div>
+
               {/* Item 2 */}
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 w-full sm:w-auto">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="w-10 h-10 text-[#ff7701]"
+                  className="w-8 h-8 sm:w-10 sm:h-10 text-[#ff7701]"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
                   strokeWidth={2}
                 >
-                  <circle
-                    cx="12"
-                    cy="12"
-                    r="9"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    fill="none"
-                  />
+                  <circle cx="12" cy="12" r="9" />
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                   d="M7.5 12.5l3 3 6-6"
+                    d="M7.5 12.5l3 3 6-6"
                   />
                 </svg>
-                <span className="text-lg text-black">No SEO Plugins or Checklists</span>
+                <span className="text-base sm:text-lg text-black">
+                  No SEO Plugins or Checklists
+                </span>
               </div>
+
               {/* Item 3 */}
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 w-full sm:w-auto">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="w-10 h-10 text-[#ff7701]"
+                  className="w-8 h-8 sm:w-10 sm:h-10 text-[#ff7701]"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
                   strokeWidth={2}
                 >
-                  <circle
-                    cx="12"
-                    cy="12"
-                    r="9"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    fill="none"
-                  />
+                  <circle cx="12" cy="12" r="9" />
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                   d="M7.5 12.5l3 3 6-6"
+                    d="M7.5 12.5l3 3 6-6"
                   />
                 </svg>
-                <span className="text-lg text-black">No Hosting Headaches</span>
+                <span className="text-base sm:text-lg text-black">
+                  No Hosting Headaches
+                </span>
               </div>
             </div>
 
-            {/* Pricing table */}
-            
-
+            {/* Pricing table (to be added) */}
           </div>
         </div>
       </section>

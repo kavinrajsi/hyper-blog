@@ -45,27 +45,29 @@ export default function HeroHome() {
         />
 
         <div className="py-12 mt-4 md:py-20 text-center">
-          <h1
-            className="text-black pb-5 font-nacelle text-4xl font-semibold md:text-5xl leading-relaxed"
-            style={{ lineHeight: '1.4' }}
+         <h1
+          className="text-black pb-5 font-nacelle text-4xl font-semibold md:text-5xl leading-relaxed"
+          style={{ lineHeight: '1.4' }}
+        >
+          The World's First AI Blog CMS That Creates
+          <br />
+          <span
+            className="text-[#e57a00] inline-block"
+            style={{
+              display: 'inline-flex',
+              borderRight: '2px solid #e57a00',
+              alignItems: 'center',
+              paddingRight: '6px',
+              height: '1em',
+            }}
           >
-            The World's First AI Blog CMS That Creates
-            <br />
-            <span
-              className="text-[#e57a00] inline-block"
-              style={{
-                display: 'inline-flex',
-                borderRight: '2px solid #e57a00',
-                alignItems: 'center',
-                paddingRight: '6px',
-                height: '1em',
-              }}
-            >
-              {displayText}
-            </span>{' '}
-            , Auto Optimizes & Converts
-          </h1>
-
+            {displayText}
+          </span>
+          {/* Mobile: line break, Desktop: comma + inline */}
+          <span className="block md:inline">
+            <span className="hidden md:inline"> ,</span> Auto Optimizes & Converts
+          </span>
+        </h1>
           <p className="mb-8 text-xl text-black">
             Create stunning blog visuals, lead magnets, polls, and FAQs—without relying on extra tools or plugins.
             HyperBlog handles the heavy lifting of SEO, speed, and structure automatically.

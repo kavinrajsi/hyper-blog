@@ -10,31 +10,38 @@ type FAQ = {
 const faqs: FAQ[] = [
   {
     question: "1. What is a Blog CMS?",
-    answer: "A Blog CMS (Content Management System) is a platform that lets you write, manage, and publish blog content without needing to code. HyperBlog is a next-gen AI-powered Blog CMS — built not just for publishing, but for converting readers into leads.",
+    answer:
+      "A Blog CMS (Content Management System) is a platform that lets you write, manage, and publish blog content without needing to code. HyperBlog is a next-gen AI-powered Blog CMS — built not just for publishing, but for converting readers into leads.",
   },
   {
     question: "2. Does HyperBlog write blog content for me?",
-    answer: "Nope — HyperBlog doesn’t create your blog content. It enhances your existing content by automatically adding visuals (like banners and infographics), SEO tags, polls, lead magnets, and structured data — so your posts get more visibility,  drive better engagement and Leads.",
+    answer:
+      "Nope — HyperBlog doesn’t create your blog content. It enhances your existing content by automatically adding visuals (like banners and infographics), SEO tags, polls, lead magnets, and structured data — so your posts get more visibility, drive better engagement and Leads.",
   },
   {
     question: "3. Who is HyperBlog for?",
-    answer: "HyperBlog is for anyone who wants a smarter, more effective blog — without hiring developers, designers, or SEO specialists. Whether you're a creator, startup, media brand, or SaaS company, if you care about traffic and leads, it’s built for you.",
+    answer:
+      "HyperBlog is for anyone who wants a smarter, more effective blog — without hiring developers, designers, or SEO specialists. Whether you're a creator, startup, media brand, or SaaS company, if you care about traffic and leads, it’s built for you.",
   },
   {
     question: "4. Can I connect HyperBlog to my current website?",
-    answer: "Yes! HyperBlog works with any website — whether it’s built on WordPress, Webflow, custom code, or anything else. You can connect it as a subfolder (like /blog), subdomain (like blog.yoursite.com), or even host it as your main site.",
+    answer:
+      "Yes! HyperBlog works with any website — whether it’s built on WordPress, Webflow, custom code, or anything else. You can connect it as a subfolder (like /blog), subdomain (like blog.yoursite.com), or even host it as your main site.",
   },
   {
     question: "5. Can I use HyperBlog as my full website?",
-    answer: "Absolutely. If your primary goal is to publish blog content, articles, or run an online magazine, HyperBlog can serve as your main website — with all the built-in features you need for design, SEO, lead generation, and analytics.",
+    answer:
+      "Absolutely. If your primary goal is to publish blog content, articles, or run an online magazine, HyperBlog can serve as your main website — with all the built-in features you need for design, SEO, lead generation, and analytics.",
   },
   {
     question: "6. What if I already have a lot of blogs published elsewhere?",
-    answer: "No problem. You can easily migrate your existing blogs to HyperBlog in minutes. Just connect your domain, import your content, and HyperBlog will handle everything — including optimizing your posts for SEO and adding visuals automatically.",
+    answer:
+      "No problem. You can easily migrate your existing blogs to HyperBlog in minutes. Just connect your domain, import your content, and HyperBlog will handle everything — including optimizing your posts for SEO and adding visuals automatically.",
   },
   {
     question: "7. What makes HyperBlog different from other blog platforms?",
-    answer: "Unlike traditional CMS tools that just let you publish content, HyperBlog is built to grow your audience and capture leads. It automatically handles SEO, adds banners, infographics, polls, and lead magnets — no designer or plugins needed. Plus, it’s fast to set up and works with any website. HyperBlog doesn’t just manage your blog — it turns it into a growth engine.",
+    answer:
+      "Unlike traditional CMS tools that just let you publish content, HyperBlog is built to grow your audience and capture leads. It automatically handles SEO, adds banners, infographics, polls, and lead magnets — no designer or plugins needed. Plus, it’s fast to set up and works with any website. HyperBlog doesn’t just manage your blog — it turns it into a growth engine.",
   },
 ];
 
@@ -46,14 +53,14 @@ export default function FAQSection() {
   };
 
   return (
-    <div className="w-full max-w-6xl mx-auto mt-10 mb-12 py-16">
-      <div className="grid grid-cols-1 md:grid-cols-[300px,1fr] items-center justify-center gap-12 items-start">
-        {/* Left Column - Question Mark Card */}
-        <div className="bg-[#FFF8F6] rounded-2xl p-8 text-center">
+    <div className="w-full max-w-6xl mx-auto mt-10 mb-12 py-8">
+      <div className="grid grid-cols-1 md:grid-cols-[300px,1fr] gap-12 items-start">
+        {/* Left Column - Question Mark Card (desktop left / mobile below) */}
+        <div className="bg-[#FFF8F6] rounded-2xl p-8 text-center order-2 md:order-1">
           <div className="mb-6">
-            <img 
-              src="/images/FAQ.png" 
-              alt="FAQ Icon" 
+            <img
+              src="/images/FAQ.png"
+              alt="FAQ Icon"
               className="w-24 h-24 mx-auto"
             />
           </div>
@@ -72,7 +79,11 @@ export default function FAQSection() {
         </div>
 
         {/* Right Column - FAQs */}
-        <div className="space-y-4 bg-white rounded-xl p-6">
+        <div className="space-y-4 bg-white rounded-xl p-6 order-1 md:order-2">
+          {/* Mobile-only Title */}
+          <h2 className="text-2xl font-bold text-[#101828] mb-12 block md:hidden">
+            Frequently Asked Questions
+          </h2>
           {faqs.map((faq, index) => (
             <FAQItem
               key={index}
@@ -102,7 +113,9 @@ function FAQItem({
         className="w-full py-2 flex justify-between items-center text-left focus:outline-none group"
         onClick={onClick}
       >
-        <span className="text-[#101828] text-[16px] font-medium pr-4">{faq.question}</span>
+        <span className="text-[#101828] text-[16px] font-medium pr-4">
+          {faq.question}
+        </span>
         <span className="ml-4 flex-shrink-0">
           <div
             className={`w-6 h-6 rounded-full flex items-center justify-center transition-colors ${
