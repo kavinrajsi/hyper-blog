@@ -7,17 +7,25 @@ import { CustomMDX } from "@/components/mdx/mdx";
 import RelatedPosts from "./related-posts";
 import Cta from "@/components/cta";
 
-export async function generateStaticParams() {
-  return getBlogPosts().map((post) => ({ slug: post.slug }));
+export const dynamic = "error";
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  const posts = getBlogPosts();
+
+  if (posts.length === 0) {
+    return [{ slug: "placeholder" }];
+  }
+
+  return posts.map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata(
   props: {
-    params: Promise<{ slug: string }>;
+    params: { slug: string };
   }
 ): Promise<Metadata | undefined> {
-  const params = await props.params;
-  const post = getBlogPosts().find((post) => post.slug === params.slug);
+  const post = getBlogPosts().find((post) => post.slug === props.params.slug);
 
   if (!post) {
     return;
@@ -33,11 +41,12 @@ export async function generateMetadata(
 
 export default async function SinglePost(
   props: {
-    params: Promise<{ slug: string }>;
+    params: { slug: string };
   }
 ) {
-  const params = await props.params;
-  const post = getBlogPosts().find((post) => post.slug === params.slug);
+  const post = getBlogPosts().find(
+    (post) => post.slug === props.params.slug,
+  );
 
   if (!post) notFound();
 
