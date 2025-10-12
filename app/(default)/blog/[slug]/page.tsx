@@ -8,10 +8,7 @@ import RelatedPosts from "./related-posts";
 import Cta from "@/components/cta";
 
 export async function generateStaticParams() {
-  // Example: hardcoded posts (replace with CMS, API, or filesystem)
-  const slugs = ["#"];
-
-  return slugs.map((slug) => ({ slug }));
+  return getBlogPosts().map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata(
