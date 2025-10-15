@@ -89,6 +89,15 @@ export default function MobileMenu() {
           <ul className="p-2 text-sm">
             <li>
               <Link
+                href="/features"
+                className="flex rounded-lg px-2 py-1.5 text-white hover:text-indigo-500"
+                onClick={() => setMobileNavOpen(false)}
+              >
+                Features
+              </Link>
+            </li>
+            <li>
+              <Link
                 href="/pricing"
                 className="flex rounded-lg px-2 py-1.5 text-white hover:text-indigo-500"
                 onClick={() => setMobileNavOpen(false)}
