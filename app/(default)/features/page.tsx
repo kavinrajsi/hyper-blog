@@ -189,37 +189,32 @@ export default function FeaturesPage() {
 
   return (
     <main className="feature feature--page mx-auto flex max-w-6xl flex-col gap-14 bg-white px-4 py-16 text-slate-900 sm:px-6 md:gap-16 md:py-20 lg:max-w-7xl lg:px-12 xl:max-w-[1120px] xl:px-0">
-      <section className="feature__hero relative grid gap-10 overflow-hidden rounded-3xl bg-gradient-to-b from-orange-50 via-white to-white p-8 shadow-[0_34px_120px_rgba(249,115,22,0.15)] lg:grid-cols-[1.05fr_1fr] lg:gap-12 lg:p-12">
-        <div className="feature__hero-content relative flex flex-col gap-6">
-          <div className="feature__hero-eyebrow inline-flex items-center gap-2 rounded-full border border-orange-200/70 bg-orange-100/70 px-4 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-orange-500 sm:text-[13px]">
-            SEO that just happens
+      <section className="feature__hero relative grid gap-10 overflow-hidden rounded-3xl bg-gradient-to-b from-orange-50 via-white to-white p-8 lg:grid-cols-[1.05fr_1fr] lg:gap-12 lg:p-12">
+        <div className="feature__hero-content relative flex flex-col gap-5">
+          <div className="feature__hero-eyebrow text-xs font-semibold uppercase tracking-[0.3em] text-slate-500 sm:text-sm">
+            SEO that just
           </div>
-          <h1 className="feature__hero-title font-nacelle text-3xl font-semibold leading-tight text-slate-900 md:text-4xl lg:text-[44px]">
-            SEO that just happens —{" "}
-            <span className="text-orange-500">automatically.</span>
+          <h1 className="feature__hero-title font-nacelle text-3xl font-semibold uppercase leading-tight text-orange-500 md:text-4xl lg:text-[46px]">
+            Happens
           </h1>
+          <p className="feature__hero-highlight font-nacelle text-[32px] font-semibold uppercase leading-tight text-[#ff735c] md:text-[42px]">
+            Automatically.
+          </p>
           <p className="feature__hero-description text-base leading-relaxed text-slate-600 md:text-lg">
-            HyperBlog takes care of behind-the-scenes technical SEO work, so
-            your blog ranks better without plugins, checklists, or extra steps.
-            Hit publish and every post stays fast, optimized, and ready to
-            convert.
+            HyperBlog takes care of all the behind-the-scenes technical SEO work—so
+            your blog ranks better without you lifting a finger. No plugins, no
+            checklists, no stress.
           </p>
           <div className="feature__hero-actions flex flex-wrap gap-4">
             <Link
-              className="feature__cta feature__cta--primary inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-orange-500 to-orange-400 px-6 py-3 text-sm font-semibold text-white shadow-[0_18px_40px_rgba(249,115,22,0.35)] transition-transform hover:-translate-y-0.5 hover:shadow-[0_22px_50px_rgba(249,115,22,0.45)] sm:px-8 sm:py-3.5 sm:text-base"
+              className="feature__cta feature__cta--primary inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-orange-500 to-orange-400 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white transition-transform hover:-translate-y-0.5 sm:px-8 sm:py-3.5 sm:text-base"
               href="/pricing"
             >
-              Get started free
-            </Link>
-            <Link
-              className="feature__cta feature__cta--ghost inline-flex items-center justify-center rounded-xl border border-orange-300 bg-orange-50/60 px-6 py-3 text-sm font-semibold text-orange-600 transition-all hover:-translate-y-0.5 hover:bg-orange-100 sm:px-8 sm:py-3.5 sm:text-base"
-              href="/contact"
-            >
-              Talk to sales
+              Get Started - FREE
             </Link>
           </div>
         </div>
-        <div className="feature__hero-visual relative overflow-hidden rounded-3xl border border-orange-100 bg-white shadow-[0_26px_60px_rgba(17,24,39,0.08)]">
+        <div className="feature__hero-visual relative overflow-hidden rounded-3xl border border-orange-100 bg-white">
           <Image
             src="/images/integrate_site.png"
             alt="HyperBlog dashboard preview"
@@ -232,7 +227,7 @@ export default function FeaturesPage() {
       </section>
 
       <section className="feature__highlight flex flex-col gap-8 md:gap-10">
-        <div className="feature__highlight-header flex flex-col gap-4 text-center md:text-left">
+        <div className="feature__highlight-header flex flex-col gap-4 text-center md:text-left lg:max-w-[420px]">
           <h2 className="feature__highlight-title font-nacelle text-2xl font-semibold text-slate-900 md:text-3xl">
             Why choose HyperBlog?
           </h2>
@@ -242,8 +237,44 @@ export default function FeaturesPage() {
           </p>
         </div>
 
-        <div className="feature__highlight-grid flex flex-col gap-6 lg:flex-row lg:items-start lg:gap-10">
-          <article className="feature__highlight-card flex flex-1 flex-col gap-6 rounded-3xl border border-orange-200/70 bg-gradient-to-b from-white via-orange-50/50 to-orange-50/80 p-6 shadow-[0_18px_50px_rgba(249,115,22,0.18)] md:p-8">
+        <div className="feature__highlight-grid flex flex-col gap-6 lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-start lg:gap-10">
+          <div className="feature__highlight-accordion flex flex-col gap-3 lg:max-w-[420px]">
+            {featureAccordions.map((item, index) => {
+              const isActive = index === activeFeatureIndex;
+              return (
+                <button
+                  key={item.title}
+                  type="button"
+                  aria-expanded={isActive}
+                  onClick={() => setActiveFeatureIndex(index)}
+                  className={`feature__highlight-accordion-item flex items-center justify-between rounded-2xl border px-5 py-4 text-left text-sm font-semibold transition-all md:text-base ${
+                    isActive
+                      ? "border-orange-500 bg-orange-50"
+                      : "border-orange-200 bg-white hover:-translate-y-0.5 hover:border-orange-300"
+                  }`}
+                >
+                  <span className="pr-4 text-slate-900">{item.title}</span>
+                  <span
+                    className={`flex h-6 w-6 items-center justify-center rounded-full border text-orange-500 transition-transform ${
+                      isActive ? "rotate-180 border-orange-500" : "border-orange-200"
+                    }`}
+                  >
+                    <svg
+                      className="h-3.5 w-3.5"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+
+          <article className="feature__highlight-card flex flex-1 flex-col gap-6 rounded-3xl border border-orange-200/70 bg-gradient-to-b from-white via-orange-50/50 to-orange-50/80 p-6 md:p-8">
             <div className="flex flex-col gap-3">
               <h3 className="feature__highlight-card-title text-xl font-semibold text-orange-600 md:text-2xl">
                 {activeFeature.title}
@@ -286,46 +317,10 @@ export default function FeaturesPage() {
               </div>
             ) : null}
           </article>
-
-          <div className="feature__highlight-accordion flex flex-1 flex-col gap-3">
-            {featureAccordions.map((item, index) => {
-              const isActive = index === activeFeatureIndex;
-              return (
-                <button
-                  key={item.title}
-                  type="button"
-                  aria-expanded={isActive}
-                  onClick={() => setActiveFeatureIndex(index)}
-                  className={`feature__highlight-accordion-item flex items-center justify-between rounded-2xl border px-5 py-4 text-left text-sm font-semibold transition-all md:text-base ${
-                    isActive
-                      ? "border-orange-500 bg-orange-50 shadow-[0_12px_32px_rgba(249,115,22,0.18)]"
-                      : "border-orange-200 bg-white hover:-translate-y-0.5 hover:border-orange-300 hover:shadow-[0_12px_32px_rgba(15,23,42,0.08)]"
-                  }`}
-                >
-                  <span className="pr-4 text-slate-900">{item.title}</span>
-                  <span
-                    className={`flex h-6 w-6 items-center justify-center rounded-full border text-orange-500 transition-transform ${
-                      isActive ? "rotate-180 border-orange-500" : "border-orange-200"
-                    }`}
-                  >
-                    <svg
-                      className="h-3.5 w-3.5"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                    >
-                      <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </span>
-                </button>
-              );
-            })}
-          </div>
         </div>
       </section>
 
-      <section className="feature__workflow flex flex-col gap-8 rounded-3xl bg-gradient-to-b from-indigo-50 via-white to-white p-8 shadow-[0_24px_80px_rgba(79,70,229,0.12)] md:gap-10 md:p-12">
+      <section className="feature__workflow flex flex-col gap-8 rounded-3xl bg-gradient-to-b from-indigo-50 via-white to-white p-8 md:gap-10 md:p-12">
         <div className="feature__workflow-header flex flex-col gap-4 text-center md:text-left">
           <h2 className="feature__workflow-title font-nacelle text-2xl font-semibold text-slate-900 md:text-3xl">
             Automate your SEO effortlessly
@@ -337,8 +332,8 @@ export default function FeaturesPage() {
           </p>
         </div>
 
-        <div className="feature__workflow-grid flex flex-col gap-6 lg:grid lg:grid-cols-[minmax(0,320px)_minmax(0,1fr)] lg:items-start lg:gap-10">
-          <div className="feature__workflow-tabs flex flex-col gap-3">
+        <div className="feature__workflow-grid flex flex-col gap-6">
+          <div className="feature__workflow-tabs grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {workflowTabs.map((tab, index) => {
               const isActive = index === activeWorkflowIndex;
               return (
@@ -349,8 +344,8 @@ export default function FeaturesPage() {
                   onClick={() => setActiveWorkflowIndex(index)}
                   className={`feature__workflow-tab flex items-center justify-between rounded-2xl border px-5 py-4 text-left text-sm font-semibold transition-all md:text-base ${
                     isActive
-                      ? "border-indigo-500 bg-indigo-100 shadow-[0_16px_42px_rgba(79,70,229,0.18)]"
-                      : "border-indigo-200 bg-white hover:-translate-y-0.5 hover:border-indigo-300 hover:shadow-[0_12px_32px_rgba(79,70,229,0.12)]"
+                      ? "border-indigo-500 bg-indigo-100"
+                      : "border-indigo-200 bg-white hover:-translate-y-0.5 hover:border-indigo-300"
                   }`}
                 >
                   <span className="pr-4 text-indigo-900">{tab.title}</span>
@@ -364,7 +359,7 @@ export default function FeaturesPage() {
             })}
           </div>
 
-          <div className="feature__workflow-panel flex flex-col gap-6 rounded-3xl border border-indigo-100 bg-gradient-to-b from-white via-indigo-50/60 to-white p-6 shadow-[0_20px_60px_rgba(79,70,229,0.15)] md:p-8">
+          <div className="feature__workflow-panel flex flex-col gap-6 rounded-3xl border border-indigo-100 bg-gradient-to-b from-white via-indigo-50/60 to-white p-6 md:p-8">
             <div className="flex flex-col gap-3">
               <h3 className="feature__workflow-panel-title text-xl font-semibold text-indigo-900 md:text-2xl">
                 {workflowTabs[activeWorkflowIndex].title}
@@ -392,8 +387,8 @@ export default function FeaturesPage() {
         </div>
       </section>
 
-      <section className="feature__seo grid gap-8 rounded-3xl bg-gradient-to-b from-orange-100/70 via-white to-orange-50 p-8 shadow-[0_32px_90px_rgba(249,115,22,0.18)] md:grid-cols-2 md:gap-10 md:p-10">
-        <div className="feature__seo-media overflow-hidden rounded-3xl border border-orange-100 bg-white shadow-[0_26px_70px_rgba(249,115,22,0.2)]">
+      <section className="feature__seo grid gap-8 rounded-3xl bg-gradient-to-b from-orange-100/70 via-white to-orange-50 p-8 md:grid-cols-2 md:gap-10 md:p-10">
+        <div className="feature__seo-media overflow-hidden rounded-3xl border border-orange-100 bg-white">
           <Image
             src={activeSeo.image ?? "/images/features.png"}
             alt="Built-in SEO illustration"
@@ -407,10 +402,6 @@ export default function FeaturesPage() {
             <h2 className="feature__seo-title font-nacelle text-2xl font-semibold text-orange-700 md:text-3xl">
               Built-in SEO that actually builds traffic
             </h2>
-            <p className="feature__seo-subtitle text-sm leading-relaxed text-orange-700/90 md:text-base">
-              HyperBlog monitors every post with AI guardrails, technical audits,
-              and actionable insights—keeping growth teams focused on the message.
-            </p>
           </div>
 
           <div className="feature__seo-accordion flex flex-col gap-3">
@@ -424,8 +415,8 @@ export default function FeaturesPage() {
                   onClick={() => setActiveSeoIndex(index)}
                   className={`feature__seo-accordion-item flex items-center justify-between rounded-2xl border px-5 py-4 text-left text-sm font-semibold transition-all md:text-base ${
                     isActive
-                      ? "border-orange-600 bg-orange-50 shadow-[0_12px_32px_rgba(249,115,22,0.18)]"
-                      : "border-orange-200 bg-white hover:-translate-y-0.5 hover:border-orange-300 hover:shadow-[0_12px_32px_rgba(249,115,22,0.12)]"
+                      ? "border-orange-600 bg-orange-50"
+                      : "border-orange-200 bg-white hover:-translate-y-0.5 hover:border-orange-300"
                   }`}
                 >
                   <span className="pr-4 text-orange-800">{item.title}</span>
@@ -455,7 +446,16 @@ export default function FeaturesPage() {
         </div>
       </section>
 
-      <section className="feature__demo grid gap-6 rounded-3xl bg-gradient-to-r from-orange-500 via-orange-500 to-orange-600 p-8 text-white shadow-[0_28px_80px_rgba(234,88,12,0.45)] md:grid-cols-[1.1fr_1fr] md:items-center md:gap-10 md:p-12">
+      <section className="feature__demo flex flex-col gap-6 rounded-3xl bg-gradient-to-r from-orange-500 via-orange-500 to-orange-600 p-8 text-white md:gap-10 md:p-12">
+        <div className="feature__demo-media overflow-hidden rounded-3xl border border-white/20 bg-white/10">
+          <Image
+            src="/images/Screen.png"
+            alt="Live demo preview"
+            width={680}
+            height={420}
+            className="h-full w-full object-cover"
+          />
+        </div>
         <div className="feature__demo-content flex flex-col gap-4">
           <h2 className="feature__demo-title font-nacelle text-2xl font-semibold md:text-3xl">
             Want to see how it works in real-time?
@@ -471,22 +471,13 @@ export default function FeaturesPage() {
             Book demo
           </Link>
         </div>
-        <div className="feature__demo-media overflow-hidden rounded-3xl border border-white/20 bg-white/10">
-          <Image
-            src="/images/Screen.png"
-            alt="Live demo preview"
-            width={680}
-            height={420}
-            className="h-full w-full object-cover"
-          />
-        </div>
       </section>
 
       <section className="feature__comparison flex flex-col gap-6">
         <h2 className="feature__comparison-title text-center font-nacelle text-2xl font-semibold text-slate-900 md:text-3xl">
           Why HyperBlog wins
         </h2>
-        <div className="feature__comparison-table overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
+        <div className="feature__comparison-table overflow-hidden rounded-3xl border border-slate-200/80 bg-white">
           <div className="grid grid-cols-1 gap-3 border-b border-slate-100 bg-slate-50 px-6 py-4 text-xs font-semibold uppercase tracking-[0.14em] text-slate-600 md:grid-cols-[1.1fr_0.9fr_1fr] md:text-sm">
             <span>Feature</span>
             <span className="md:text-center">HyperBlog</span>
@@ -505,7 +496,7 @@ export default function FeaturesPage() {
         </div>
       </section>
 
-      <section className="feature__testimonials flex flex-col gap-8 rounded-3xl bg-gradient-to-b from-white to-slate-100 p-8 shadow-[0_24px_75px_rgba(15,23,42,0.12)] md:gap-10 md:p-12">
+      <section className="feature__testimonials flex flex-col gap-8 rounded-3xl bg-gradient-to-b from-white to-slate-100 p-8 md:gap-10 md:p-12">
         <div className="feature__testimonials-header flex flex-col items-center gap-3 text-center">
           <div className="feature__testimonials-badge inline-flex items-center rounded-full bg-orange-100 px-4 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-orange-500">
             What our customers say
@@ -516,7 +507,7 @@ export default function FeaturesPage() {
         </div>
 
         <div className="feature__testimonials-carousel flex flex-col items-center gap-6">
-          <div className="feature__testimonials-card flex w-full max-w-xl flex-col items-center gap-5 rounded-3xl border border-slate-100 bg-white px-6 py-8 text-center shadow-[0_20px_60px_rgba(15,23,42,0.1)] md:px-10 md:py-10">
+          <div className="feature__testimonials-card flex w-full max-w-xl flex-col items-center gap-5 rounded-3xl border border-slate-100 bg-white px-6 py-8 text-center md:px-10 md:py-10">
             <div className="feature__testimonials-avatar h-24 w-24 overflow-hidden rounded-full border-4 border-orange-100">
               <Image
                 src={activeTestimonial.avatar}
@@ -547,7 +538,7 @@ export default function FeaturesPage() {
                   prev === 0 ? testimonials.length - 1 : prev - 1,
                 )
               }
-              className="feature__testimonials-control inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-sm font-semibold text-slate-700 shadow-[0_10px_30px_rgba(15,23,42,0.12)] transition-transform hover:-translate-y-0.5"
+              className="feature__testimonials-control inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-sm font-semibold text-slate-700 transition-transform hover:-translate-y-0.5"
             >
               <span className="sr-only">Previous testimonial</span>
               <svg
@@ -582,7 +573,7 @@ export default function FeaturesPage() {
                   prev === testimonials.length - 1 ? 0 : prev + 1,
                 )
               }
-              className="feature__testimonials-control inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-sm font-semibold text-slate-700 shadow-[0_10px_30px_rgba(15,23,42,0.12)] transition-transform hover:-translate-y-0.5"
+              className="feature__testimonials-control inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-sm font-semibold text-slate-700 transition-transform hover:-translate-y-0.5"
             >
               <span className="sr-only">Next testimonial</span>
               <svg
@@ -613,9 +604,9 @@ export default function FeaturesPage() {
           {faqItems.map((item, index) => {
             const isActive = index === activeFaqIndex;
             return (
-              <div
+          <div
                 key={item.question}
-                className="feature__faq-item rounded-3xl border border-slate-200/80 bg-white px-6 py-5 shadow-[0_14px_48px_rgba(15,23,42,0.08)]"
+                className="feature__faq-item rounded-3xl border border-slate-200/80 bg-white px-6 py-5"
               >
                 <button
                   type="button"
@@ -656,7 +647,7 @@ export default function FeaturesPage() {
           })}
         </div>
 
-        <div className="feature__faq-cta grid gap-4 rounded-3xl border border-orange-200 bg-gradient-to-r from-orange-50 via-amber-50 to-orange-100 px-6 py-6 shadow-[0_18px_52px_rgba(249,115,22,0.15)] md:grid-cols-[auto_1fr_auto] md:items-center md:px-8 md:py-8">
+        <div className="feature__faq-cta grid gap-4 rounded-3xl border border-orange-200 bg-gradient-to-r from-orange-50 via-amber-50 to-orange-100 px-6 py-6 md:grid-cols-[auto_1fr_auto] md:items-center md:px-8 md:py-8">
           <div className="feature__faq-cta-icon flex h-14 w-14 items-center justify-center rounded-2xl bg-orange-500 text-lg font-bold text-white md:h-16 md:w-16">
             ?
           </div>
@@ -669,17 +660,17 @@ export default function FeaturesPage() {
               have about HyperBlog.
             </p>
           </div>
-          <Link
-            className="feature__cta feature__cta--primary inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-orange-500 to-orange-400 px-6 py-3 text-sm font-semibold text-white shadow-[0_18px_40px_rgba(249,115,22,0.35)] transition-transform hover:-translate-y-0.5 hover:shadow-[0_22px_50px_rgba(249,115,22,0.45)] sm:px-8 sm:py-3.5 sm:text-base"
-            href="/contact"
-          >
-            Talk to us
+            <Link
+              className="feature__cta feature__cta--primary inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-orange-500 to-orange-400 px-6 py-3 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5 sm:px-8 sm:py-3.5 sm:text-base"
+              href="/contact"
+            >
+              Talk to us
           </Link>
         </div>
       </section>
 
       <section className="feature__footer-cta flex justify-center pb-10 pt-4">
-        <div className="feature__footer-cta-card flex w-full max-w-3xl flex-col items-center gap-5 rounded-[32px] border border-rose-200/80 bg-gradient-to-b from-white via-rose-50/70 to-rose-100 px-8 py-10 text-center shadow-[0_24px_80px_rgba(248,113,113,0.15)] md:px-12 md:py-12">
+        <div className="feature__footer-cta-card flex w-full max-w-3xl flex-col items-center gap-5 rounded-[32px] border border-rose-200/80 bg-gradient-to-b from-white via-rose-50/70 to-rose-100 px-8 py-10 text-center md:px-12 md:py-12">
           <h2 className="feature__footer-cta-title font-nacelle text-2xl font-semibold text-slate-900 md:text-[28px]">
             Join the content-first platform
           </h2>
@@ -689,7 +680,7 @@ export default function FeaturesPage() {
           </p>
           <div className="feature__footer-cta-actions flex w-full flex-col gap-3 sm:max-w-xl sm:flex-row sm:justify-center">
             <Link
-              className="feature__cta feature__cta--primary inline-flex flex-1 items-center justify-center rounded-xl bg-gradient-to-r from-orange-500 to-orange-400 px-6 py-3 text-sm font-semibold text-white shadow-[0_18px_40px_rgba(249,115,22,0.35)] transition-transform hover:-translate-y-0.5 hover:shadow-[0_22px_50px_rgba(249,115,22,0.45)] sm:px-8 sm:py-3.5 sm:text-base"
+              className="feature__cta feature__cta--primary inline-flex flex-1 items-center justify-center rounded-xl bg-gradient-to-r from-orange-500 to-orange-400 px-6 py-3 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5 sm:px-8 sm:py-3.5 sm:text-base"
               href="/signup"
             >
               Start free trial
