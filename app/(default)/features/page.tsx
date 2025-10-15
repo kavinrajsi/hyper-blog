@@ -4,169 +4,20 @@ import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 
+import featuresData from "@/content/features.json";
 
-
-const featureAccordions = [
-  {
-    title: "Auto-Technical SEO",
-    description:
-      "HyperBlog optimizes load speed, Core Web Vitals, schema, and metadata the moment you publish. No plugins, no manual work.",
-    image: "/images/feature3.png",
-    statLabel: "Total Followers",
-    statValue: "65%",
-    chart: "/images/Screen.png",
-  },
-  {
-    title: "Blazing Fast Speed & Seamless Experience",
-    description:
-      "CDN-level caching, image optimization, and instant page rendering give your audience a lightning-fast browsing experience.",
-  },
-  {
-    title: "Interactive & Engaging Content Tools",
-    description:
-      "Launch interactive polls, lead magnets, and AI-generated visuals within minutes—no designers needed.",
-  },
-  {
-    title: "AI-Powered Lead Generation",
-    description:
-      "Deliver personalized lead magnets that convert high-intent readers into qualified pipeline automatically.",
-  },
-  {
-    title: "Unified Platform",
-    description:
-      "Bring content creation, optimization, analytics, and conversion under one roof with HyperBlog.",
-  },
-];
-
-const workflowTabs = [
-  {
-    title: "Unified Platform",
-    description:
-      "Bring every part of your revenue workflow together—strategy, creation, publishing, and reporting—without switching tools.",
-    cta: "See how",
-    ctaUrl: "/contact",
-  },
-  {
-    title: "Works In Days",
-    description:
-      "Launch high-performing blogs in under a week with templates, AI-assisted content, and automated optimizations.",
-    cta: "Get started",
-    ctaUrl: "/pricing",
-  },
-  {
-    title: "Integrations",
-    description:
-      "Connect CRM, analytics, and automation tools in a click so the data you need to scale is always in sync.",
-    cta: "Explore integrations",
-    ctaUrl: "/contact",
-  },
-  {
-    title: "Report Seamlessly",
-    description:
-      "Track traffic, conversions, and SEO lift with dashboards built for marketing and revenue teams.",
-    cta: "View reporting",
-    ctaUrl: "/contact",
-  },
-];
-
-const seoAccordions = [
-  {
-    title: "Higher rankings in one place",
-    description:
-      "HyperBlog auto-builds structured schema, internal links, and SEO-friendly layouts while monitoring technical issues.",
-    image: "/images/Screen2.png",
-  },
-  {
-    title: "Less Reliance on dev or SEO teams",
-    description:
-      "Non-technical teams can launch content that meets technical benchmarks without waiting for engineering sprints.",
-  },
-  {
-    title: "Better conversions & stay-on-site time",
-    description:
-      "Personalized CTAs, sticky lead capture, and interactive modules keep readers engaged and ready to convert.",
-  },
-];
-
-const comparisonRows = [
-  {
-    label: "Auto Meta Tags",
-    hyperblog: "Yes",
-    competitor: "Manual or plugins",
-  },
-  {
-    label: "Sitemaps",
-    hyperblog: "Automated",
-    competitor: "Manual setup",
-  },
-  {
-    label: "Internal Linking",
-    hyperblog: "Smart AI suggestions",
-    competitor: "Manual updates",
-  },
-  {
-    label: "Schema",
-    hyperblog: "Built-in",
-    competitor: "Limited or missing",
-  },
-  {
-    label: "Speed Optimization",
-    hyperblog: "Serverless + CDN",
-    competitor: "Depends on hosting",
-  },
-];
-
-const faqItems = [
-  {
-    question: "Is there a free trial available?",
-    answer:
-      "Yes! Test drive HyperBlog for 30 days. If you need help, we’ll onboard your team with a live session and tailored success plan.",
-  },
-  {
-    question: "How does HyperBlog help with SEO?",
-    answer:
-      "HyperBlog automates technical SEO optimizations and provides AI recommendations so every post hits benchmarks instantly.",
-  },
-  {
-    question: "Can I migrate existing blogs?",
-    answer:
-      "Absolutely. Our team helps migrate legacy content, redirects, and metadata so you never lose search equity.",
-  },
-  {
-    question: "Does HyperBlog work for agencies?",
-    answer:
-      "Yes. Manage multiple client blogs, templates, and permissions from a single dashboard with role-based access.",
-  },
-  {
-    question: "What integrations are supported?",
-    answer:
-      "We integrate with HubSpot, Salesforce, Marketo, Zapier, Google Analytics, and more. Custom integrations are available.",
-  },
-];
-
-const testimonials = [
-  {
-    name: "Alisa Hester",
-    title: "PM, Hugglance",
-    quote:
-      "“HyperBlog gave us a single place to publish faster, rank higher, and convert readers into qualified pipeline.”",
-    avatar: "/images/testimonial-02.jpg",
-  },
-  {
-    name: "Renee Fisher",
-    title: "Head of Growth, Northpeak",
-    quote:
-      "“We replaced five tools with HyperBlog, automated SEO guardrails, and doubled conversions on new content.”",
-    avatar: "/images/testimonial-04.jpg",
-  },
-  {
-    name: "Andre King",
-    title: "Founder, Crisp Labs",
-    quote:
-      "“Our content team can launch new blog experiences without engineers. HyperBlog keeps everything fast and on-brand.”",
-    avatar: "/images/testimonial-05.jpg",
-  },
-];
+const {
+  hero,
+  highlight,
+  featureAccordions,
+  workflow,
+  seo,
+  demo,
+  comparison,
+  testimonials: testimonialsContent,
+  faq,
+  footerCta,
+} = featuresData;
 
 export default function FeaturesPage() {
   const [activeFeatureIndex, setActiveFeatureIndex] = useState(0);
@@ -175,13 +26,15 @@ export default function FeaturesPage() {
   const [activeTestimonialIndex, setActiveTestimonialIndex] = useState(0);
   const [activeWorkflowIndex, setActiveWorkflowIndex] = useState(0);
 
+  const testimonials = testimonialsContent.items;
+
   const activeFeature = useMemo(
     () => featureAccordions[activeFeatureIndex],
     [activeFeatureIndex],
   );
 
   const activeSeo = useMemo(
-    () => seoAccordions[activeSeoIndex],
+    () => seo.accordions[activeSeoIndex],
     [activeSeoIndex],
   );
 
@@ -192,31 +45,29 @@ export default function FeaturesPage() {
       <section className="feature__hero relative grid gap-10 overflow-hidden rounded-3xl p-8 lg:grid-cols-[1.05fr_1fr] lg:gap-12 lg:p-12">
         <div className="feature__hero-content relative flex flex-col gap-5">
           <div className="feature__hero-eyebrow text-xs font-semibold uppercase tracking-[0.3em] text-slate-500 sm:text-sm">
-            SEO that just
+            {hero.eyebrow}
           </div>
           <h1 className="feature__hero-title font-nacelle text-3xl font-semibold uppercase leading-tight text-orange-500 md:text-4xl lg:text-[46px]">
-            Happens
+            {hero.title}
           </h1>
           <p className="feature__hero-highlight font-nacelle text-[32px] font-semibold uppercase leading-tight text-[#ff735c] md:text-[42px]">
-            Automatically.
+            {hero.highlight}
           </p>
           <p className="feature__hero-description text-base leading-relaxed text-slate-600 md:text-lg">
-            HyperBlog takes care of all the behind-the-scenes technical SEO work—so
-            your blog ranks better without you lifting a finger. No plugins, no
-            checklists, no stress.
+            {hero.description}
           </p>
           <div className="feature__hero-actions flex flex-wrap gap-4">
             <Link
               className="feature__cta feature__cta--primary inline-flex items-center justify-center rounded-xl bg-orange-500 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white transition-transform hover:-translate-y-0.5 hover:bg-orange-400 sm:px-8 sm:py-3.5 sm:text-base"
-              href="/pricing"
+              href={hero.primaryCta.href}
             >
-              Get Started - FREE
+              {hero.primaryCta.label}
             </Link>
           </div>
         </div>
         <div className="feature__hero-visual relative overflow-hidden rounded-3xl border border-orange-100">
           <Image
-            src="/images/integrate_site.png"
+            src={hero.image}
             alt="HyperBlog dashboard preview"
             width={720}
             height={520}
@@ -229,11 +80,10 @@ export default function FeaturesPage() {
       <section className="feature__highlight flex flex-col gap-8 md:gap-10">
         <div className="feature__highlight-header flex flex-col gap-4 text-center md:text-left lg:max-w-[420px]">
           <h2 className="feature__highlight-title font-nacelle text-2xl font-semibold text-slate-900 md:text-3xl">
-            Why choose HyperBlog?
+            {highlight.title}
           </h2>
           <p className="feature__highlight-subtitle text-sm leading-relaxed text-slate-600 md:text-base">
-            Turn every post into a conversion engine with automated SEO, visual
-            storytelling, and optimized journeys in one place.
+            {highlight.subtitle}
           </p>
         </div>
 
@@ -323,18 +173,16 @@ export default function FeaturesPage() {
       <section className="feature__workflow flex flex-col gap-8 rounded-3xl border border-indigo-100/40 p-8 md:gap-10 md:p-12">
         <div className="feature__workflow-header flex flex-col gap-4 text-center md:text-left">
           <h2 className="feature__workflow-title font-nacelle text-2xl font-semibold text-slate-900 md:text-3xl">
-            Automate your SEO effortlessly
+            {workflow.title}
           </h2>
           <p className="feature__workflow-description text-sm leading-relaxed text-slate-600 md:text-base">
-            Orchestrate strategy, creation, and reporting without switching
-            tools. Every module is built for collaboration, velocity, and
-            reliable growth.
+            {workflow.description}
           </p>
         </div>
 
         <div className="feature__workflow-grid flex flex-col gap-6">
           <div className="feature__workflow-tabs grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {workflowTabs.map((tab, index) => {
+            {workflow.tabs.map((tab, index) => {
               const isActive = index === activeWorkflowIndex;
               return (
                 <button
@@ -362,21 +210,21 @@ export default function FeaturesPage() {
           <div className="feature__workflow-panel flex flex-col gap-6 rounded-3xl border border-indigo-100 p-6 md:p-8">
             <div className="flex flex-col gap-3">
               <h3 className="feature__workflow-panel-title text-xl font-semibold text-indigo-900 md:text-2xl">
-                {workflowTabs[activeWorkflowIndex].title}
+                {workflow.tabs[activeWorkflowIndex].title}
               </h3>
               <p className="feature__workflow-panel-description text-sm leading-relaxed text-indigo-700 md:text-base">
-                {workflowTabs[activeWorkflowIndex].description}
+                {workflow.tabs[activeWorkflowIndex].description}
               </p>
             </div>
             <Link
-              href={workflowTabs[activeWorkflowIndex].ctaUrl}
+              href={workflow.tabs[activeWorkflowIndex].ctaUrl}
               className="feature__cta feature__cta--link inline-flex items-center text-sm font-semibold text-indigo-600 transition-colors hover:text-indigo-700 md:text-base"
             >
-              {workflowTabs[activeWorkflowIndex].cta}
+              {workflow.tabs[activeWorkflowIndex].cta}
             </Link>
             <div className="feature__workflow-panel-visual overflow-hidden rounded-2xl border border-indigo-100">
               <Image
-                src="/images/Screen3.png"
+                src={workflow.panelImage}
                 alt="Workflow visual"
                 width={640}
                 height={360}
@@ -390,7 +238,7 @@ export default function FeaturesPage() {
       <section className="feature__seo grid gap-8 rounded-3xl border border-orange-100/40 p-8 md:grid-cols-2 md:gap-10 md:p-10">
         <div className="feature__seo-media overflow-hidden rounded-3xl border border-orange-100">
           <Image
-            src={activeSeo.image ?? "/images/features.png"}
+            src={activeSeo.image ?? seo.defaultImage}
             alt="Built-in SEO illustration"
             width={640}
             height={420}
@@ -400,12 +248,12 @@ export default function FeaturesPage() {
         <div className="feature__seo-content flex flex-col gap-6">
           <div className="flex flex-col gap-3">
             <h2 className="feature__seo-title font-nacelle text-2xl font-semibold text-orange-700 md:text-3xl">
-              Built-in SEO that actually builds traffic
+              {seo.title}
             </h2>
           </div>
 
           <div className="feature__seo-accordion flex flex-col gap-3">
-            {seoAccordions.map((item, index) => {
+            {seo.accordions.map((item, index) => {
               const isActive = index === activeSeoIndex;
               return (
                 <button
@@ -449,7 +297,7 @@ export default function FeaturesPage() {
       <section className="feature__demo flex flex-col gap-6 rounded-3xl border border-orange-500 p-8 md:gap-10 md:p-12">
         <div className="feature__demo-media overflow-hidden rounded-3xl border border-orange-200">
           <Image
-            src="/images/Screen.png"
+            src={demo.image}
             alt="Live demo preview"
             width={680}
             height={420}
@@ -458,24 +306,23 @@ export default function FeaturesPage() {
         </div>
         <div className="feature__demo-content flex flex-col gap-4">
           <h2 className="feature__demo-title font-nacelle text-2xl font-semibold md:text-3xl">
-            Want to see how it works in real-time?
+            {demo.title}
           </h2>
           <p className="feature__demo-description text-sm leading-relaxed text-slate-600 md:text-base">
-            We’ll show you how HyperBlog auto-optimizes content the moment you
-            hit “Publish.”
+            {demo.description}
           </p>
           <Link
             className="feature__cta feature__cta--secondary inline-flex w-fit items-center justify-center rounded-xl border border-orange-500 px-6 py-3 text-sm font-semibold text-orange-600 transition-all hover:-translate-y-0.5 hover:text-orange-500 sm:px-8 sm:py-3.5 sm:text-base"
-            href="/contact"
+            href={demo.cta.href}
           >
-            Book demo
+            {demo.cta.label}
           </Link>
         </div>
       </section>
 
       <section className="feature__comparison flex flex-col gap-6">
         <h2 className="feature__comparison-title text-center font-nacelle text-2xl font-semibold text-slate-900 md:text-3xl">
-          Why HyperBlog wins
+          {comparison.title}
         </h2>
         <div className="feature__comparison-table overflow-hidden rounded-3xl border border-slate-200/80">
           <div className="grid grid-cols-1 gap-3 border-b border-slate-100 px-6 py-4 text-xs font-semibold uppercase tracking-[0.14em] text-slate-600 md:grid-cols-[1.1fr_0.9fr_1fr] md:text-sm">
@@ -483,7 +330,7 @@ export default function FeaturesPage() {
             <span className="md:text-center">HyperBlog</span>
             <span className="md:text-center">Traditional CMS + Plugins</span>
           </div>
-          {comparisonRows.map((row) => (
+          {comparison.rows.map((row) => (
             <div
               key={row.label}
               className="grid grid-cols-1 gap-3 border-b border-slate-100 px-6 py-4 text-sm text-slate-600 last:border-b-0 md:grid-cols-[1.1fr_0.9fr_1fr]"
@@ -499,10 +346,10 @@ export default function FeaturesPage() {
       <section className="feature__testimonials flex flex-col gap-8 rounded-3xl border border-slate-100 p-8 md:gap-10 md:p-12">
         <div className="feature__testimonials-header flex flex-col items-center gap-3 text-center">
           <div className="feature__testimonials-badge inline-flex items-center rounded-full border border-orange-200 px-4 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-orange-500">
-            What our customers say
+            {testimonialsContent.badge}
           </div>
           <h2 className="feature__testimonials-title font-nacelle text-2xl font-semibold text-slate-900 md:text-3xl">
-            Revenue and content teams ship faster with HyperBlog.
+            {testimonialsContent.title}
           </h2>
         </div>
 
@@ -593,18 +440,18 @@ export default function FeaturesPage() {
       <section className="feature__faq flex flex-col gap-8">
         <div className="flex flex-col items-center gap-3 text-center">
           <h2 className="feature__faq-title font-nacelle text-2xl font-semibold text-slate-900 md:text-3xl">
-            Frequently asked questions
+            {faq.title}
           </h2>
           <p className="feature__faq-subtitle text-sm leading-relaxed text-slate-600 md:text-base">
-            Everything you need to know about HyperBlog.
+            {faq.subtitle}
           </p>
         </div>
 
         <div className="feature__faq-list flex flex-col gap-4">
-          {faqItems.map((item, index) => {
+          {faq.items.map((item, index) => {
             const isActive = index === activeFaqIndex;
             return (
-          <div
+              <div
                 key={item.question}
                 className="feature__faq-item rounded-3xl border border-slate-200/80 px-6 py-5"
               >
@@ -649,22 +496,21 @@ export default function FeaturesPage() {
 
         <div className="feature__faq-cta grid gap-4 rounded-3xl border border-orange-200 px-6 py-6 md:grid-cols-[auto_1fr_auto] md:items-center md:px-8 md:py-8">
           <div className="feature__faq-cta-icon flex h-14 w-14 items-center justify-center rounded-2xl border border-orange-500 text-lg font-bold text-orange-600 md:h-16 md:w-16">
-            ?
+            {faq.cta.icon}
           </div>
           <div className="feature__faq-cta-copy flex flex-col gap-1">
             <h3 className="feature__faq-cta-title text-base font-semibold text-slate-900 md:text-lg">
-              You have different questions?
+              {faq.cta.title}
             </h3>
             <p className="feature__faq-cta-description text-sm leading-relaxed text-slate-600">
-              We’ll connect you with a specialist to answer every question you
-              have about HyperBlog.
+              {faq.cta.description}
             </p>
           </div>
-            <Link
-              className="feature__cta feature__cta--primary inline-flex items-center justify-center rounded-xl bg-orange-500 px-6 py-3 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5 hover:bg-orange-400 sm:px-8 sm:py-3.5 sm:text-base"
-              href="/contact"
-            >
-              Talk to us
+          <Link
+            className="feature__cta feature__cta--primary inline-flex items-center justify-center rounded-xl bg-orange-500 px-6 py-3 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5 hover:bg-orange-400 sm:px-8 sm:py-3.5 sm:text-base"
+            href={faq.cta.href}
+          >
+            {faq.cta.label}
           </Link>
         </div>
       </section>
@@ -672,24 +518,23 @@ export default function FeaturesPage() {
       <section className="feature__footer-cta flex justify-center pb-10 pt-4">
         <div className="feature__footer-cta-card flex w-full max-w-3xl flex-col items-center gap-5 rounded-[32px] border border-rose-200/80 px-8 py-10 text-center md:px-12 md:py-12">
           <h2 className="feature__footer-cta-title font-nacelle text-2xl font-semibold text-slate-900 md:text-[28px]">
-            Join the content-first platform
+            {footerCta.title}
           </h2>
           <p className="feature__footer-cta-description text-sm leading-relaxed text-slate-600 md:text-base">
-            Launch faster, automate technical SEO, and convert readers into
-            qualified pipeline with HyperBlog.
+            {footerCta.description}
           </p>
           <div className="feature__footer-cta-actions flex w-full flex-col gap-3 sm:max-w-xl sm:flex-row sm:justify-center">
             <Link
               className="feature__cta feature__cta--primary inline-flex flex-1 items-center justify-center rounded-xl bg-orange-500 px-6 py-3 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5 hover:bg-orange-400 sm:px-8 sm:py-3.5 sm:text-base"
-              href="/signup"
+              href={footerCta.primaryCta.href}
             >
-              Start free trial
+              {footerCta.primaryCta.label}
             </Link>
             <Link
               className="feature__cta feature__cta--ghost inline-flex flex-1 items-center justify-center rounded-xl border border-orange-300 px-6 py-3 text-sm font-semibold text-orange-600 transition-all hover:-translate-y-0.5 sm:px-8 sm:py-3.5 sm:text-base"
-              href="/contact"
+              href={footerCta.secondaryCta.href}
             >
-              Book demo
+              {footerCta.secondaryCta.label}
             </Link>
           </div>
         </div>

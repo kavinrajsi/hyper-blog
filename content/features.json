@@ -1,0 +1,201 @@
+{
+  "hero": {
+    "eyebrow": "SEO that just",
+    "title": "Happens",
+    "highlight": "Automatically.",
+    "description": "HyperBlog takes care of all the behind-the-scenes technical SEO work—so your blog ranks better without you lifting a finger. No plugins, no checklists, no stress.",
+    "primaryCta": {
+      "label": "Get Started - FREE",
+      "href": "/pricing"
+    },
+    "image": "/images/integrate_site.png"
+  },
+  "highlight": {
+    "title": "Why choose HyperBlog?",
+    "subtitle": "Turn every post into a conversion engine with automated SEO, visual storytelling, and optimized journeys in one place."
+  },
+  "featureAccordions": [
+    {
+      "title": "Auto-Technical SEO",
+      "description": "HyperBlog optimizes load speed, Core Web Vitals, schema, and metadata the moment you publish. No plugins, no manual work.",
+      "image": "/images/feature3.png",
+      "statLabel": "Total Followers",
+      "statValue": "65%",
+      "chart": "/images/Screen.png"
+    },
+    {
+      "title": "Blazing Fast Speed & Seamless Experience",
+      "description": "CDN-level caching, image optimization, and instant page rendering give your audience a lightning-fast browsing experience."
+    },
+    {
+      "title": "Interactive & Engaging Content Tools",
+      "description": "Launch interactive polls, lead magnets, and AI-generated visuals within minutes—no designers needed."
+    },
+    {
+      "title": "AI-Powered Lead Generation",
+      "description": "Deliver personalized lead magnets that convert high-intent readers into qualified pipeline automatically."
+    },
+    {
+      "title": "Unified Platform",
+      "description": "Bring content creation, optimization, analytics, and conversion under one roof with HyperBlog."
+    }
+  ],
+  "workflow": {
+    "title": "Automate your SEO effortlessly",
+    "description": "Orchestrate strategy, creation, and reporting without switching tools. Every module is built for collaboration, velocity, and reliable growth.",
+    "tabs": [
+      {
+        "title": "Unified Platform",
+        "description": "Bring every part of your revenue workflow together—strategy, creation, publishing, and reporting—without switching tools.",
+        "cta": "See how",
+        "ctaUrl": "/contact"
+      },
+      {
+        "title": "Works In Days",
+        "description": "Launch high-performing blogs in under a week with templates, AI-assisted content, and automated optimizations.",
+        "cta": "Get started",
+        "ctaUrl": "/pricing"
+      },
+      {
+        "title": "Integrations",
+        "description": "Connect CRM, analytics, and automation tools in a click so the data you need to scale is always in sync.",
+        "cta": "Explore integrations",
+        "ctaUrl": "/contact"
+      },
+      {
+        "title": "Report Seamlessly",
+        "description": "Track traffic, conversions, and SEO lift with dashboards built for marketing and revenue teams.",
+        "cta": "View reporting",
+        "ctaUrl": "/contact"
+      }
+    ],
+    "panelImage": "/images/Screen3.png"
+  },
+  "seo": {
+    "title": "Built-in SEO that actually builds traffic",
+    "defaultImage": "/images/features.png",
+    "accordions": [
+      {
+        "title": "Higher rankings in one place",
+        "description": "HyperBlog auto-builds structured schema, internal links, and SEO-friendly layouts while monitoring technical issues.",
+        "image": "/images/Screen2.png"
+      },
+      {
+        "title": "Less Reliance on dev or SEO teams",
+        "description": "Non-technical teams can launch content that meets technical benchmarks without waiting for engineering sprints."
+      },
+      {
+        "title": "Better conversions & stay-on-site time",
+        "description": "Personalized CTAs, sticky lead capture, and interactive modules keep readers engaged and ready to convert."
+      }
+    ]
+  },
+  "demo": {
+    "title": "Want to see how it works in real-time?",
+    "description": "We’ll show you how HyperBlog auto-optimizes content the moment you hit “Publish.”",
+    "cta": {
+      "label": "Book demo",
+      "href": "/contact"
+    },
+    "image": "/images/Screen.png"
+  },
+  "comparison": {
+    "title": "Why HyperBlog wins",
+    "rows": [
+      {
+        "label": "Auto Meta Tags",
+        "hyperblog": "Yes",
+        "competitor": "Manual or plugins"
+      },
+      {
+        "label": "Sitemaps",
+        "hyperblog": "Automated",
+        "competitor": "Manual setup"
+      },
+      {
+        "label": "Internal Linking",
+        "hyperblog": "Smart AI suggestions",
+        "competitor": "Manual updates"
+      },
+      {
+        "label": "Schema",
+        "hyperblog": "Built-in",
+        "competitor": "Limited or missing"
+      },
+      {
+        "label": "Speed Optimization",
+        "hyperblog": "Serverless + CDN",
+        "competitor": "Depends on hosting"
+      }
+    ]
+  },
+  "testimonials": {
+    "badge": "What our customers say",
+    "title": "Revenue and content teams ship faster with HyperBlog.",
+    "items": [
+      {
+        "name": "Alisa Hester",
+        "title": "PM, Hugglance",
+        "quote": "“HyperBlog gave us a single place to publish faster, rank higher, and convert readers into qualified pipeline.”",
+        "avatar": "/images/testimonial-02.jpg"
+      },
+      {
+        "name": "Renee Fisher",
+        "title": "Head of Growth, Northpeak",
+        "quote": "“We replaced five tools with HyperBlog, automated SEO guardrails, and doubled conversions on new content.”",
+        "avatar": "/images/testimonial-04.jpg"
+      },
+      {
+        "name": "Andre King",
+        "title": "Founder, Crisp Labs",
+        "quote": "“Our content team can launch new blog experiences without engineers. HyperBlog keeps everything fast and on-brand.”",
+        "avatar": "/images/testimonial-05.jpg"
+      }
+    ]
+  },
+  "faq": {
+    "title": "Frequently asked questions",
+    "subtitle": "Everything you need to know about HyperBlog.",
+    "items": [
+      {
+        "question": "Is there a free trial available?",
+        "answer": "Yes! Test drive HyperBlog for 30 days. If you need help, we’ll onboard your team with a live session and tailored success plan."
+      },
+      {
+        "question": "How does HyperBlog help with SEO?",
+        "answer": "HyperBlog automates technical SEO optimizations and provides AI recommendations so every post hits benchmarks instantly."
+      },
+      {
+        "question": "Can I migrate existing blogs?",
+        "answer": "Absolutely. Our team helps migrate legacy content, redirects, and metadata so you never lose search equity."
+      },
+      {
+        "question": "Does HyperBlog work for agencies?",
+        "answer": "Yes. Manage multiple client blogs, templates, and permissions from a single dashboard with role-based access."
+      },
+      {
+        "question": "What integrations are supported?",
+        "answer": "We integrate with HubSpot, Salesforce, Marketo, Zapier, Google Analytics, and more. Custom integrations are available."
+      }
+    ],
+    "cta": {
+      "icon": "?",
+      "title": "You have different questions?",
+      "description": "We’ll connect you with a specialist to answer every question you have about HyperBlog.",
+      "label": "Talk to us",
+      "href": "/contact"
+    }
+  },
+  "footerCta": {
+    "title": "Join the content-first platform",
+    "description": "Launch faster, automate technical SEO, and convert readers into qualified pipeline with HyperBlog.",
+    "primaryCta": {
+      "label": "Start free trial",
+      "href": "/signup"
+    },
+    "secondaryCta": {
+      "label": "Book demo",
+      "href": "/contact"
+    }
+  }
+}
